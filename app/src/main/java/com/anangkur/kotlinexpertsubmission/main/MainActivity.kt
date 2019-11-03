@@ -1,25 +1,30 @@
-package com.anangkur.kotlinexpertsubmission
+package com.anangkur.kotlinexpertsubmission.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.anangkur.kotlinexpertsubmission.R
+import com.anangkur.kotlinexpertsubmission.detail.DetailActivity
 import com.anangkur.kotlinexpertsubmission.model.Teams
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
 
-class MainActivity : AppCompatActivity() {
+class MainActivity: AppCompatActivity(), MainActionListener {
 
     private lateinit var mAdapter: MainAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mAdapter = MainAdapter()
-        MainActivityUI().setContentView(this)
+        mAdapter = MainAdapter(this)
+        MainActivityUI(mAdapter).setContentView(this)
         mAdapter.setRecyclerData(prepareData())
     }
 
-    inner class MainActivityUI: AnkoComponent<MainActivity>{
+    override fun onClickItem(data: Teams) {
+        DetailActivity.startActivity(this, data)
+    }
+
+    inner class MainActivityUI(private val mAdapter: MainAdapter): AnkoComponent<MainActivity>{
         override fun createView(ui: AnkoContext<MainActivity>) = with(ui){
             verticalLayout {
                 recyclerView {
