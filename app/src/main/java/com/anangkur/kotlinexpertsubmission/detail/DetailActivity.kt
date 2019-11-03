@@ -32,7 +32,9 @@ class DetailActivity : AppCompatActivity() {
     companion object{
         private const val EXTRA_DETAIL = "EXTRA_DETAIL"
         fun startActivity(context: Context, data: Teams){
-            context.startActivity(Intent(context, DetailActivity::class.java).putExtra(EXTRA_DETAIL, data))
+            context.startActivity<DetailActivity>(
+                EXTRA_DETAIL to data
+            )
         }
     }
 
