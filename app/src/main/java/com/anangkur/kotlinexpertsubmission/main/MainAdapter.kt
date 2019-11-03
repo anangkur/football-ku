@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.anangkur.kotlinexpertsubmission.R
 import com.anangkur.kotlinexpertsubmission.model.Teams
 import org.jetbrains.anko.*
-import org.jetbrains.anko.sdk27.coroutines.onClick
 
 class MainAdapter(val actionListener: MainActionListener): RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 
