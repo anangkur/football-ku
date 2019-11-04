@@ -195,6 +195,12 @@
         <item name="android:layout_height">@dimen/dimens_0dp</item>
         <item name="android:scaleType">centerCrop</item>
     </style>
+    <style name="ImageViewLeague" parent="ImageViewDefault">
+        <item name="android:layout_width">@dimen/dimens_100dp</item>
+        <item name="android:layout_height">@dimen/dimens_100dp</item>
+        <item name="android:src">@drawable/img_english_premier_league</item>
+        <item name="android:elevation">@dimen/dimens_4dp</item>
+    </style>
     <!--end of style for image view-->
 
     <!--style for text input layout-->
