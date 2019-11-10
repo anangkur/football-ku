@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    style="@style/ConstraintWrapHeight"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_marginStart="@dimen/dimens_10dp"
+    android:layout_marginEnd="@dimen/dimens_10dp">
+    <ImageView
+        style="@style/ImageViewLeague"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="@dimen/dimens_10dp"
+        android:layout_marginTop="@dimen/dimens_20dp" />
+    <androidx.cardview.widget.CardView
+        style="@style/CardWrapHeight"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="@dimen/dimens_40dp"
+        app:cardCornerRadius="@dimen/dimens_20dp">
+        <LinearLayout
+            style="@style/LinearVerticalWrap"
+            android:layout_marginTop="@dimen/dimens_100dp"
+            android:layout_marginBottom="@dimen/dimens_20dp"
+            android:layout_marginStart="@dimen/dimens_10dp"
+            android:layout_marginEnd="@dimen/dimens_10dp">
+            <TextView
+                android:id="@+id/tv_title_league"
+                style="@style/TextBoldBig"
+                android:text="@string/app_name"/>
+            <TextView
+                android:id="@+id/tv_desc_league"
+                style="@style/TextBoldNormal"
+                android:text="@string/app_name"
+                android:layout_marginTop="@dimen/dimens_10dp"
+                android:maxLines="3"
+                android:ellipsize="end"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
