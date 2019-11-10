@@ -53,6 +53,17 @@
         <item name="android:background">@drawable/rect_stroke_gray_rounded_100dp</item>
         <item name="android:foreground">@drawable/ripple_button_background_light</item>
     </style>
+    <style name="RelativeSocMed" parent="RelativeDefault">
+        <item name="android:layout_width">@dimen/dimens_40dp</item>
+        <item name="android:layout_height">@dimen/dimens_40dp</item>
+        <item name="android:background">@drawable/oval_solid_colorprimary</item>
+        <item name="android:foreground">@drawable/ripple_button_background_light</item>
+    </style>
+    <style name="RelativeLeagueBig" parent="RelativeDefault">
+        <item name="android:layout_width">@dimen/dimens_100dp</item>
+        <item name="android:layout_height">@dimen/dimens_100dp</item>
+        <item name="android:background">@drawable/oval_solid_colorprimary</item>
+    </style>
     <!--end of style for relative-->
 
     <!--style for constraint-->
@@ -201,9 +212,21 @@
         <item name="android:scaleType">centerCrop</item>
     </style>
     <style name="ImageViewLeague" parent="ImageViewDefault">
-        <item name="android:layout_width">60dp</item>
-        <item name="android:layout_height">60dp</item>
+        <item name="android:layout_width">@dimen/dimens_60dp</item>
+        <item name="android:layout_height">@dimen/dimens_60dp</item>
         <item name="android:src">@drawable/img_english_premier_league</item>
+        <item name="android:elevation">@dimen/dimens_4dp</item>
+    </style>
+    <style name="ImageViewLeagueBig" parent="ImageViewDefault">
+        <item name="android:layout_width">@dimen/dimens_80dp</item>
+        <item name="android:layout_height">@dimen/dimens_80dp</item>
+        <item name="android:src">@drawable/img_english_premier_league</item>
+        <item name="android:elevation">@dimen/dimens_4dp</item>
+    </style>
+    <style name="ImageViewSocMed" parent="ImageViewDefault">
+        <item name="android:layout_width">@dimen/dimens_20dp</item>
+        <item name="android:layout_height">@dimen/dimens_20dp</item>
+        <item name="android:src">@drawable/ic_facebook</item>
         <item name="android:elevation">@dimen/dimens_4dp</item>
     </style>
     <!--end of style for image view-->
@@ -236,6 +259,11 @@
     <style name="ViewLine">
         <item name="android:layout_width">@dimen/dimens_0dp</item>
         <item name="android:layout_height">@dimen/dimens_1dp</item>
+        <item name="android:background">@color/gray</item>
+    </style>
+    <style name="ViewLineVertical">
+        <item name="android:layout_width">@dimen/dimens_1dp</item>
+        <item name="android:layout_height">@dimen/dimens_0dp</item>
         <item name="android:background">@color/gray</item>
     </style>
     <style name="ViewCover">
@@ -285,6 +313,10 @@
     <style name="FABDefault">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
+    </style>
+    <style name="FABLeague" parent="FABDefault">
+        <item name="android:layout_height">@dimen/dimens_100dp</item>
+        <item name="android:layout_width">@dimen/dimens_100dp</item>
     </style>
     <!--end of style for fab-->
 

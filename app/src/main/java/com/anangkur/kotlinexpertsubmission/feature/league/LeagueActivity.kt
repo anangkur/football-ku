@@ -7,12 +7,15 @@ import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import com.anangkur.kotlinexpertsubmission.R
 import com.anangkur.kotlinexpertsubmission.base.BaseActivity
+import com.anangkur.kotlinexpertsubmission.data.model.League
+import com.anangkur.kotlinexpertsubmission.feature.leagueDetail.LeagueDetailActivity
 import com.anangkur.kotlinexpertsubmission.util.obtainViewModel
 import com.anangkur.kotlinexpertsubmission.util.setupRecyclerViewGrid
 import kotlinx.android.synthetic.main.activity_league.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
 
-class LeagueActivity: BaseActivity<LeagueViewModel>() {
+class LeagueActivity: BaseActivity<LeagueViewModel>(), LeagueActionListener {
+
     override val mLayout: Int
         get() = R.layout.activity_league
     override val mViewModel: LeagueViewModel
@@ -28,10 +31,6 @@ class LeagueActivity: BaseActivity<LeagueViewModel>() {
         super.onCreate(savedInstanceState)
 
         setupAdapter()
-    }
-
-    override fun onStart() {
-        super.onStart()
         observeViewModel()
     }
 
@@ -42,11 +41,15 @@ class LeagueActivity: BaseActivity<LeagueViewModel>() {
     }
 
     private fun setupAdapter(){
-        mAdapter = LeagueAdapter()
+        mAdapter = LeagueAdapter(this)
         recycler_league.apply {
             adapter = mAdapter
             setupRecyclerViewGrid(this@LeagueActivity)
         }
+    }
+
+    override fun onClickItem(data: League) {
+        LeagueDetailActivity.startActivity(this, data)
     }
 
     companion object{

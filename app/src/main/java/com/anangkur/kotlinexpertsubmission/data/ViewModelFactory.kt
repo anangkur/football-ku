@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.anangkur.kotlinexpertsubmission.feature.league.LeagueViewModel
+import com.anangkur.kotlinexpertsubmission.feature.leagueDetail.LeagueDetailViewModel
 
 class ViewModelFactory(private val repository: Repository): ViewModelProvider.NewInstanceFactory() {
 
@@ -11,6 +12,7 @@ class ViewModelFactory(private val repository: Repository): ViewModelProvider.Ne
         with(modelClass) {
             when {
                 isAssignableFrom(LeagueViewModel::class.java) -> LeagueViewModel(repository)
+                isAssignableFrom(LeagueDetailViewModel::class.java) -> LeagueDetailViewModel(repository)
                 else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
             }
         } as T
