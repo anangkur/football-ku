@@ -37,5 +37,6 @@
     <string name="text_search">Mencari</string>
     <string name="menu_teams">teams</string>
     <string name="toolbar_league">Daftar Liga</string>
+    <string name="toolbar_league_detail">Detail Liga</string>
 
 </resources>

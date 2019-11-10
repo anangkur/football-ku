@@ -8,5 +8,6 @@ data class League(
     val id: String,
     val title: String,
     val description: String,
-    val image: Int
+    val image: Int,
+    val backgroundColor: Int
 ): Parcelable
