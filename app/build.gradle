@@ -15,7 +15,13 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            applicationIdSuffix ".debug"
+            debuggable true
+            buildConfigField "String", "baseUrl", '"https://www.thesportsdb.com/api/v1/json/1/"'
+        }
         release {
+            buildConfigField "String", "baseUrl", '"https://www.thesportsdb.com/api/v1/json/1/"'
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -45,6 +51,7 @@ dependencies {
 
     // Dependencies for Architecture Component
     implementation "androidx.lifecycle:lifecycle-extensions:$archLifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0-alpha01"
     implementation "androidx.room:room-runtime:$roomVersion"
     implementation "androidx.room:room-ktx:$roomVersion"
     implementation 'androidx.appcompat:appcompat:1.1.0'
@@ -53,7 +60,7 @@ dependencies {
     kapt "androidx.room:room-compiler:$roomVersion"
 
     // Dependencies for Glide
-    implementation("com.github.bumptech.glide:glide:$glideVersion") { exclude group: "androidx" }
+    implementation"com.github.bumptech.glide:glide:$glideVersion"
     annotationProcessor "com.github.bumptech.glide:compiler:$glideVersion"
 
     // Dependencies for local unit tests

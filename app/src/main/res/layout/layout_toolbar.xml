@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.Toolbar style="@style/ToolbarDefault"
+<androidx.appcompat.widget.Toolbar
+    android:id="@+id/toolbar"
+    style="@style/ToolbarDefault"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorPrimary"
-    android:elevation="@dimen/dimens_8dp">
-    <TextView
-        android:id="@+id/tv_title_toolbar"
-        style="@style/TextBoldBig"
-        android:text="@string/app_name"/>
+    app:navigationIcon="@drawable/ic_back"
+    app:title="@string/app_name"
+    android:elevation="@dimen/dimens_4dp">
 </androidx.appcompat.widget.Toolbar>

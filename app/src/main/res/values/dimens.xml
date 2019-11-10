@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Dimens for margin n' padding -->
     <dimen name="dimens_0dp">0dp</dimen>
     <dimen name="dimens_1dp">1dp</dimen>
@@ -10,6 +10,7 @@
     <dimen name="dimens_32dp">32dp</dimen>
     <dimen name="dimens_40dp">40dp</dimen>
     <dimen name="dimens_48dp">48dp</dimen>
+    <dimen name="dimens_60dp">60dp</dimen>
     <dimen name="dimens_64dp">64dp</dimen>
     <dimen name="dimens_100dp">100dp</dimen>
     <dimen name="dimens_120dp">120dp</dimen>
@@ -29,4 +30,5 @@
     <dimen name="size_10sp">10sp</dimen>
     <dimen name="dimens_2dp">2dp</dimen>
     <dimen name="dimens_8dp">8dp</dimen>
+    <dimen name="dimens_80dp">80dp</dimen>
 </resources>

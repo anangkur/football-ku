@@ -10,4 +10,15 @@
     <color name="gray">#E0E0E0</color>
 
     <color name="yellow">#F2994A</color>
+
+    <color name="light_greenish_blue">#55efc4</color>
+    <color name="faded_poster">#81ecec</color>
+    <color name="green_darner_tail">#74b9ff</color>
+    <color name="shy_moment">#a29bfe</color>
+    <color name="city_light">#dfe6e9</color>
+    <color name="shooting_breeze">#b2bec3</color>
+    <color name="sour_lemon">#ffeaa7</color>
+    <color name="first_date">#fab1a0</color>
+    <color name="pico_8_pink">#fd79a8</color>
+    <color name="pink_glamour">#ff7675</color>
 </resources>
