@@ -190,11 +190,18 @@
     <style name="TextBoldBig" parent="TextBig">
         <item name="android:fontFamily">@font/comfortaa_bold</item>
     </style>
+    <style name="TextBoldBigWhite" parent="TextBoldBig">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
     <style name="TextBoldExtraBig" parent="TextExtraBig">
         <item name="android:fontFamily">@font/comfortaa_bold</item>
     </style>
     <style name="TextBoldSuperExtraBig" parent="TextSuperExtraBig">
         <item name="android:fontFamily">@font/comfortaa_bold</item>
+    </style>
+    <style name="TextBoldSuperExtraBigWhite" parent="TextBoldSuperExtraBig">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">32sp</item>
     </style>
     <!--end of style for regular text-->
 
@@ -218,8 +225,8 @@
         <item name="android:elevation">@dimen/dimens_4dp</item>
     </style>
     <style name="ImageViewLeagueBig" parent="ImageViewDefault">
-        <item name="android:layout_width">@dimen/dimens_80dp</item>
-        <item name="android:layout_height">@dimen/dimens_80dp</item>
+        <item name="android:layout_width">@dimen/dimens_100dp</item>
+        <item name="android:layout_height">@dimen/dimens_100dp</item>
         <item name="android:src">@drawable/img_english_premier_league</item>
         <item name="android:elevation">@dimen/dimens_4dp</item>
     </style>

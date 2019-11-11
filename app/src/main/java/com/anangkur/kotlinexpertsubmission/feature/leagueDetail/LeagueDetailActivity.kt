@@ -2,6 +2,7 @@ package com.anangkur.kotlinexpertsubmission.feature.leagueDetail
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Typeface
 import android.os.Bundle
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
@@ -13,6 +14,8 @@ import com.anangkur.kotlinexpertsubmission.feature.custom.LeagueSliderFragment
 import com.anangkur.kotlinexpertsubmission.feature.custom.LeagueSliderTabAdapter
 import kotlinx.android.synthetic.main.activity_league_detail.*
 import android.net.Uri
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import com.anangkur.kotlinexpertsubmission.util.*
 
 class LeagueDetailActivity: BaseActivity<LeagueDetailViewModel>(), LeagueDetailActionListener {
@@ -34,6 +37,15 @@ class LeagueDetailActivity: BaseActivity<LeagueDetailViewModel>(), LeagueDetailA
         setupViewPagerSlider()
         getDataFromIntent()
         observeViewModel()
+        setupCollapsingToolbar()
+    }
+
+    private fun setupCollapsingToolbar(){
+        toolbar.title = mViewModel.dataFromIntent?.title
+        collapsing_toolbar.apply {
+            setCollapsedTitleTypeface(ResourcesCompat.getFont(this@LeagueDetailActivity, R.font.comfortaa_bold))
+            setExpandedTitleTypeface(ResourcesCompat.getFont(this@LeagueDetailActivity, R.font.comfortaa_bold))
+        }
     }
 
     private fun observeViewModel(){
