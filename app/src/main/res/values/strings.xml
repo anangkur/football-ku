@@ -38,5 +38,6 @@
     <string name="menu_teams">teams</string>
     <string name="toolbar_league">Daftar Liga</string>
     <string name="toolbar_league_detail">Detail Liga</string>
+    <string name="tab_description">Deskripsi</string>
 
 </resources>

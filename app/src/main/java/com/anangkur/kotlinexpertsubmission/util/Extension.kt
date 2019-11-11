@@ -9,6 +9,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DefaultItemAnimator
@@ -58,6 +59,9 @@ fun hideSoftKeyboard(activity: Activity) {
 
 fun <T : ViewModel> AppCompatActivity.obtainViewModel(viewModelClass: Class<T>) =
     ViewModelProviders.of(this, ViewModelFactory.getInstance(application)).get(viewModelClass)
+
+fun <T : ViewModel> Fragment.obtainViewModel(viewModelClass: Class<T>) =
+    ViewModelProviders.of(this, ViewModelFactory.getInstance(this.requireContext())).get(viewModelClass)
 
 fun RecyclerView.setupRecyclerViewGrid(context: Context){
     this.apply {

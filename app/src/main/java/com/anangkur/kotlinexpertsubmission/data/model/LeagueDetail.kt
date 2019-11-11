@@ -1,7 +1,10 @@
 package com.anangkur.kotlinexpertsubmission.data.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class LeagueDetail(
     @SerializedName("idLeague") val idLeague: String = "",
     @SerializedName("idSoccerXML") val idSoccerXML: String = "",
@@ -46,4 +49,4 @@ data class LeagueDetail(
     @SerializedName("strNaming") val strNaming: String = "",
     @SerializedName("strComplete") val strComplete: String = "",
     @SerializedName("strLocked") val strLocked: String = ""
-)
+): Parcelable
