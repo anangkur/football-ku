@@ -9,14 +9,15 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.anangkur.kotlinexpertsubmission.R
-import com.anangkur.kotlinexpertsubmission.base.BaseAdapter
 import com.anangkur.kotlinexpertsubmission.data.ViewModelFactory
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -59,10 +60,20 @@ fun hideSoftKeyboard(activity: Activity) {
 fun <T : ViewModel> AppCompatActivity.obtainViewModel(viewModelClass: Class<T>) =
     ViewModelProviders.of(this, ViewModelFactory.getInstance(application)).get(viewModelClass)
 
+fun <T : ViewModel> Fragment.obtainViewModel(viewModelClass: Class<T>) =
+    ViewModelProviders.of(this, ViewModelFactory.getInstance(this.requireContext())).get(viewModelClass)
+
 fun RecyclerView.setupRecyclerViewGrid(context: Context){
     this.apply {
         itemAnimator = DefaultItemAnimator()
         layoutManager = GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
+    }
+}
+
+fun RecyclerView.setupRecyclerViewLinear(context: Context){
+    this.apply {
+        itemAnimator = DefaultItemAnimator()
+        layoutManager = LinearLayoutManager(context)
     }
 }
 

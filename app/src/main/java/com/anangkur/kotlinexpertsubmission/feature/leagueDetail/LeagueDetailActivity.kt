@@ -12,10 +12,14 @@ import com.anangkur.kotlinexpertsubmission.data.model.Result
 import com.anangkur.kotlinexpertsubmission.feature.custom.LeagueSliderFragment
 import com.anangkur.kotlinexpertsubmission.feature.custom.LeagueSliderTabAdapter
 import kotlinx.android.synthetic.main.activity_league_detail.*
-import android.net.Uri
+import androidx.core.content.res.ResourcesCompat
+import com.anangkur.kotlinexpertsubmission.feature.custom.DefaultTabAdapter
+import com.anangkur.kotlinexpertsubmission.feature.leagueDetail.detail.DetailLeagueFragment
+import com.anangkur.kotlinexpertsubmission.feature.leagueDetail.nextMatch.NextMatchFragment
+import com.anangkur.kotlinexpertsubmission.feature.leagueDetail.prevMatch.PrevMatchFragment
 import com.anangkur.kotlinexpertsubmission.util.*
 
-class LeagueDetailActivity: BaseActivity<LeagueDetailViewModel>(), LeagueDetailActionListener {
+class LeagueDetailActivity: BaseActivity<LeagueDetailViewModel>(){
 
     override val mLayout: Int
         get() = R.layout.activity_league_detail
@@ -27,6 +31,7 @@ class LeagueDetailActivity: BaseActivity<LeagueDetailViewModel>(), LeagueDetailA
         get() = ""
 
     private lateinit var pagerAdapter: LeagueSliderTabAdapter
+    private lateinit var tabAdapter: DefaultTabAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +39,16 @@ class LeagueDetailActivity: BaseActivity<LeagueDetailViewModel>(), LeagueDetailA
         setupViewPagerSlider()
         getDataFromIntent()
         observeViewModel()
+        setupCollapsingToolbar()
+        setupTabAdapter()
+    }
+
+    private fun setupCollapsingToolbar(){
+        toolbar.title = mViewModel.dataFromIntent?.title
+        collapsing_toolbar.apply {
+            setCollapsedTitleTypeface(ResourcesCompat.getFont(this@LeagueDetailActivity, R.font.comfortaa_bold))
+            setExpandedTitleTypeface(ResourcesCompat.getFont(this@LeagueDetailActivity, R.font.comfortaa_bold))
+        }
     }
 
     private fun observeViewModel(){
@@ -42,33 +57,21 @@ class LeagueDetailActivity: BaseActivity<LeagueDetailViewModel>(), LeagueDetailA
                 getLeagueDetail(it.id).observe(this@LeagueDetailActivity, Observer {result ->
                     when (result.status) {
                         Result.Status.SUCCESS -> {
-                            pb_detail_league.gone()
                             pb_slider_league.gone()
-                            layout_content.visible()
                             vp_slider.visible()
-                            fab_logo.visible()
-                            btn_facebook.visible()
-                            btn_twitter.visible()
-                            btn_website.visible()
                             val data = result.data?.leagues?.get(0)
                             createListSlider(data?.strFanart1, data?.strFanart2, data?.strFanart3, data?.strFanart4, data?.strBadge)
-                            setupDataToView(data?.strLeague?:"", data?.strDescriptionEN?:"", data?.strBadge?:"")
-                            btn_facebook.setOnClickListener { this@LeagueDetailActivity.onClickWebsite(data?.strFacebook?:"") }
-                            btn_twitter.setOnClickListener { this@LeagueDetailActivity.onClickWebsite(data?.strTwitter?:"") }
-                            btn_website.setOnClickListener { this@LeagueDetailActivity.onClickWebsite(data?.strWebsite?:"") }
+                            tabAdapter.addFragment(DetailLeagueFragment.newInstance(data), getString(R.string.tab_description))
+                            tabAdapter.addFragment(NextMatchFragment.newInstance(dataFromIntent), getString(R.string.tab_next_match))
+                            tabAdapter.addFragment(PrevMatchFragment.newInstance(dataFromIntent), getString(R.string.tab_prev_match))
+                            vp_layout.adapter = tabAdapter
+                            tab_detail.setupWithViewPager(vp_layout)
                         }
                         Result.Status.LOADING -> {
                             pb_slider_league.visible()
-                            pb_detail_league.visible()
-                            layout_content.gone()
                             vp_slider.gone()
-                            fab_logo.gone()
-                            btn_facebook.gone()
-                            btn_twitter.gone()
-                            btn_website.gone()
                         }
                         Result.Status.ERROR -> {
-                            pb_detail_league.gone()
                             pb_slider_league.gone()
                             showSnackbarLong(result.message?:"")
                         }
@@ -100,20 +103,8 @@ class LeagueDetailActivity: BaseActivity<LeagueDetailViewModel>(), LeagueDetailA
         tab_slider.disableClickTablayout()
     }
 
-    private fun setupDataToView(title: String, description: String, image: String){
-        tv_title_league.text = title
-        tv_desc_league.text = description
-        fab_logo.setImageUrl(image)
-    }
-
-    override fun onClickWebsite(url: String) {
-        try{
-            val i = Intent(Intent.ACTION_VIEW)
-            i.data = Uri.parse(url)
-            startActivity(i)
-        }catch (e: Exception){
-            showSnackbarLong(e.message?:"")
-        }
+    private fun setupTabAdapter(){
+        tabAdapter = DefaultTabAdapter(supportFragmentManager)
     }
 
     companion object{
