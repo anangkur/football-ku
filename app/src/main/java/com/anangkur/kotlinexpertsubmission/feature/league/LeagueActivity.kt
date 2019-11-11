@@ -30,6 +30,7 @@ class LeagueActivity: BaseActivity<LeagueViewModel>(), LeagueActionListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        toolbar.navigationIcon = null
         setupAdapter()
         observeViewModel()
     }

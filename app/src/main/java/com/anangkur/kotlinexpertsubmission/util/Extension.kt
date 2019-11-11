@@ -14,10 +14,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.anangkur.kotlinexpertsubmission.R
-import com.anangkur.kotlinexpertsubmission.base.BaseAdapter
 import com.anangkur.kotlinexpertsubmission.data.ViewModelFactory
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -67,6 +67,13 @@ fun RecyclerView.setupRecyclerViewGrid(context: Context){
     this.apply {
         itemAnimator = DefaultItemAnimator()
         layoutManager = GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
+    }
+}
+
+fun RecyclerView.setupRecyclerViewLinear(context: Context){
+    this.apply {
+        itemAnimator = DefaultItemAnimator()
+        layoutManager = LinearLayoutManager(context)
     }
 }
 

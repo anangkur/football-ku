@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.anangkur.kotlinexpertsubmission.feature.league.LeagueViewModel
 import com.anangkur.kotlinexpertsubmission.feature.leagueDetail.LeagueDetailViewModel
 import com.anangkur.kotlinexpertsubmission.feature.leagueDetail.detail.DetailLeagueViewModel
+import com.anangkur.kotlinexpertsubmission.feature.leagueDetail.nextMatch.NextMatchViewModel
+import com.anangkur.kotlinexpertsubmission.feature.leagueDetail.prevMatch.PrevMatchViewModel
 
 class ViewModelFactory(private val repository: Repository): ViewModelProvider.NewInstanceFactory() {
 
@@ -15,6 +17,8 @@ class ViewModelFactory(private val repository: Repository): ViewModelProvider.Ne
                 isAssignableFrom(LeagueViewModel::class.java) -> LeagueViewModel(repository)
                 isAssignableFrom(LeagueDetailViewModel::class.java) -> LeagueDetailViewModel(repository)
                 isAssignableFrom(DetailLeagueViewModel::class.java) -> DetailLeagueViewModel(repository)
+                isAssignableFrom(NextMatchViewModel::class.java) -> NextMatchViewModel(repository)
+                isAssignableFrom(PrevMatchViewModel::class.java) -> PrevMatchViewModel(repository)
                 else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
             }
         } as T

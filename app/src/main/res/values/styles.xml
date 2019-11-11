@@ -361,4 +361,11 @@
         <item name="tabPadding">@dimen/dimens_0dp</item>
     </style>
     <!--end of style for tab layout-->
+
+    <!--style for swipe refresh-->
+    <style name="SwipeRefreshDefault">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+    <!--end of style for swipe refresh-->
 </resources>

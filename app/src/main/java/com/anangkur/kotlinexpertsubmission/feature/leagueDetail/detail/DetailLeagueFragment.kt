@@ -22,15 +22,8 @@ class DetailLeagueFragment: BaseFragment<DetailLeagueViewModel>(), DetailLeagueA
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        getDataFromArgs()
+        mViewModel.dataFromArgs = arguments?.getParcelable(ARGS_LEAGUE)
         setupDataToView()
-    }
-
-    private fun getDataFromArgs(){
-        val bundle = arguments
-        bundle?.let {
-            mViewModel.dataFromArgs = it.getParcelable(ARGS_LEAGUE)
-        }
     }
 
     private fun setupDataToView(){

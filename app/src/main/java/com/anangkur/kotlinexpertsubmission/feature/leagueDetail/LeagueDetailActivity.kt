@@ -15,6 +15,8 @@ import kotlinx.android.synthetic.main.activity_league_detail.*
 import androidx.core.content.res.ResourcesCompat
 import com.anangkur.kotlinexpertsubmission.feature.custom.DefaultTabAdapter
 import com.anangkur.kotlinexpertsubmission.feature.leagueDetail.detail.DetailLeagueFragment
+import com.anangkur.kotlinexpertsubmission.feature.leagueDetail.nextMatch.NextMatchFragment
+import com.anangkur.kotlinexpertsubmission.feature.leagueDetail.prevMatch.PrevMatchFragment
 import com.anangkur.kotlinexpertsubmission.util.*
 
 class LeagueDetailActivity: BaseActivity<LeagueDetailViewModel>(){
@@ -60,6 +62,8 @@ class LeagueDetailActivity: BaseActivity<LeagueDetailViewModel>(){
                             val data = result.data?.leagues?.get(0)
                             createListSlider(data?.strFanart1, data?.strFanart2, data?.strFanart3, data?.strFanart4, data?.strBadge)
                             tabAdapter.addFragment(DetailLeagueFragment.newInstance(data), getString(R.string.tab_description))
+                            tabAdapter.addFragment(NextMatchFragment.newInstance(dataFromIntent), getString(R.string.tab_next_match))
+                            tabAdapter.addFragment(PrevMatchFragment.newInstance(dataFromIntent), getString(R.string.tab_prev_match))
                             vp_layout.adapter = tabAdapter
                             tab_detail.setupWithViewPager(vp_layout)
                         }
