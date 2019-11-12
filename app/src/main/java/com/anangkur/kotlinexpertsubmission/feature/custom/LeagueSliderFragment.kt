@@ -19,17 +19,20 @@ class LeagueSliderFragment: Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val data = arguments?.getString(Const.BUNDLE_RESULT)
+        val data = arguments?.getString(BUNDLE_RESULT)
         data?.let {
             view.iv_slider.setImageUrl(it)
         }
     }
 
     companion object{
+
+        const val BUNDLE_RESULT = "BUNDLE_RESULT"
+
         fun getInstance(data: String): LeagueSliderFragment{
             val fragment = LeagueSliderFragment()
             val bundle = Bundle()
-            bundle.putString(Const.BUNDLE_RESULT, data)
+            bundle.putString(BUNDLE_RESULT, data)
             fragment.arguments = bundle
             return fragment
         }
