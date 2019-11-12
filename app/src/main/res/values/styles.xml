@@ -142,6 +142,12 @@
         <item name="android:textSize">@dimen/dimens_24dp</item>
         <item name="android:textColor">@color/black</item>
     </style>
+    <style name="TextSuperSuperExtraBig">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">48sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
     <!--end of style for base text-->
 
     <!--style for regular text-->
@@ -197,6 +203,9 @@
         <item name="android:fontFamily">@font/comfortaa_bold</item>
     </style>
     <style name="TextBoldSuperExtraBig" parent="TextSuperExtraBig">
+        <item name="android:fontFamily">@font/comfortaa_bold</item>
+    </style>
+    <style name="TextBoldSuperSuperExtraBig" parent="TextSuperSuperExtraBig">
         <item name="android:fontFamily">@font/comfortaa_bold</item>
     </style>
     <style name="TextBoldSuperExtraBigWhite" parent="TextBoldSuperExtraBig">

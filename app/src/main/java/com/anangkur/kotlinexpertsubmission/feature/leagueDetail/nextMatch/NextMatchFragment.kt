@@ -5,14 +5,18 @@ import android.view.View
 import androidx.lifecycle.Observer
 import com.anangkur.kotlinexpertsubmission.R
 import com.anangkur.kotlinexpertsubmission.base.BaseFragment
+import com.anangkur.kotlinexpertsubmission.data.model.Event
 import com.anangkur.kotlinexpertsubmission.data.model.League
 import com.anangkur.kotlinexpertsubmission.util.obtainViewModel
 import com.anangkur.kotlinexpertsubmission.util.setupRecyclerViewLinear
 import kotlinx.android.synthetic.main.fragment_match.*
 import com.anangkur.kotlinexpertsubmission.data.model.Result
+import com.anangkur.kotlinexpertsubmission.feature.leagueDetail.MatchActionListener
+import com.anangkur.kotlinexpertsubmission.feature.matchDetail.MatchDetailActivity
 import com.anangkur.kotlinexpertsubmission.util.showSnackbarShort
 
-class NextMatchFragment: BaseFragment<NextMatchViewModel>(){
+class NextMatchFragment: BaseFragment<NextMatchViewModel>(), MatchActionListener{
+
     override val mLayout: Int
         get() = R.layout.fragment_match
     override val mViewModel: NextMatchViewModel
@@ -52,9 +56,13 @@ class NextMatchFragment: BaseFragment<NextMatchViewModel>(){
     }
 
     private fun setupAdapter(){
-        mAdapter = NextMatchAdapter()
+        mAdapter = NextMatchAdapter(this)
         recycler_match.adapter = mAdapter
         recycler_match.setupRecyclerViewLinear(requireContext())
+    }
+
+    override fun onClickMatch(data: Event) {
+        MatchDetailActivity.startActivity(requireContext(), data)
     }
 
     companion object{
