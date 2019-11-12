@@ -23,6 +23,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
+import java.text.SimpleDateFormat
+import java.util.*
 
 fun showToastShort(context: Context, message: String){
     Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
@@ -41,7 +43,6 @@ fun Activity.showSnackbarLong(message: String){
 }
 
 fun ImageView.setImageUrl(url: String){
-    Log.d("SET_IMAGE_URL", "url: $url")
     Glide.with(this)
         .load(url)
         .apply(RequestOptions().error(R.color.gray))
@@ -97,4 +98,17 @@ fun View.visible(){
 
 fun View.gone(){
     this.visibility = View.GONE
+}
+
+fun convertStringToDate(date: String, time: String): String{
+    val dateUnparsed = "${date}T${time} GMT"
+    val dateFromApi = SimpleDateFormat(Const.DATE_FROM_API, Locale.getDefault()).parse(dateUnparsed)
+    return SimpleDateFormat(Const.DATE_MATCH, Locale.getDefault()).format(dateFromApi)
+}
+
+fun convertStringToTime(date: String, time: String): String{
+    val dateUnparsed = "${date}T${time} GMT"
+    val dateFromApi = SimpleDateFormat(Const.DATE_FROM_API, Locale.getDefault()).parse(dateUnparsed)
+    val timeMatch = SimpleDateFormat(Const.TIME_MATCH, Locale.getDefault()).format(dateFromApi)
+    return "Pukul $timeMatch WIB"
 }
