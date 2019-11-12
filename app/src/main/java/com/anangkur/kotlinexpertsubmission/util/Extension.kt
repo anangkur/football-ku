@@ -41,7 +41,6 @@ fun Activity.showSnackbarLong(message: String){
 }
 
 fun ImageView.setImageUrl(url: String){
-    Log.d("SET_IMAGE_URL", "url: $url")
     Glide.with(this)
         .load(url)
         .apply(RequestOptions().error(R.color.gray))
