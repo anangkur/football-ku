@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/CardWrapHeight"
     app:cardUseCompatPadding="true"
     app:cardCornerRadius="@dimen/dimens_20dp"
+    android:foreground="?selectableItemBackground"
     android:layout_marginStart="@dimen/dimens_10dp"
     android:layout_marginEnd="@dimen/dimens_10dp">
     <androidx.constraintlayout.widget.ConstraintLayout

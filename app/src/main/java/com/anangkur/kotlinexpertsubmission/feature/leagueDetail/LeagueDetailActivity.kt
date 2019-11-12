@@ -5,19 +5,19 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
+import androidx.core.content.res.ResourcesCompat
 import com.anangkur.kotlinexpertsubmission.R
 import com.anangkur.kotlinexpertsubmission.base.BaseActivity
 import com.anangkur.kotlinexpertsubmission.data.model.League
 import com.anangkur.kotlinexpertsubmission.data.model.Result
 import com.anangkur.kotlinexpertsubmission.feature.custom.LeagueSliderFragment
 import com.anangkur.kotlinexpertsubmission.feature.custom.LeagueSliderTabAdapter
-import kotlinx.android.synthetic.main.activity_league_detail.*
-import androidx.core.content.res.ResourcesCompat
 import com.anangkur.kotlinexpertsubmission.feature.custom.DefaultTabAdapter
 import com.anangkur.kotlinexpertsubmission.feature.leagueDetail.detail.DetailLeagueFragment
 import com.anangkur.kotlinexpertsubmission.feature.leagueDetail.nextMatch.NextMatchFragment
 import com.anangkur.kotlinexpertsubmission.feature.leagueDetail.prevMatch.PrevMatchFragment
 import com.anangkur.kotlinexpertsubmission.util.*
+import kotlinx.android.synthetic.main.activity_league_detail.*
 
 class LeagueDetailActivity: BaseActivity<LeagueDetailViewModel>(){
 

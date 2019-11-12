@@ -41,5 +41,20 @@
     <string name="tab_description">Deskripsi</string>
     <string name="tab_next_match">Selanjutnya</string>
     <string name="tab_prev_match">Sebelumnya</string>
+    <string name="dummy_score">0</string>
+    <string name="separator_score">:</string>
+    <string name="dummy_lorem_short">Lorem Ipsum</string>
+    <string name="label_goal">Goal</string>
+    <string name="label_shoot">Tendangan</string>
+    <string name="label_formation">Formasi</string>
+    <string name="label_yellow_card">Kartu Kuning</string>
+    <string name="label_red_card">Kartu Merah</string>
+    <string name="label_lineups">Lineups</string>
+    <string name="label_keeper">Kiper</string>
+    <string name="label_back">Pemain Belakang</string>
+    <string name="label_midfield">Pemain Tengah</string>
+    <string name="label_front">Pemain Depan</string>
+    <string name="label_subtitute">Pemain Pengganti</string>
+    <string name="label_stat">Statistik</string>
 
 </resources>
