@@ -20,6 +20,14 @@ class RemoteRepository: DataSource, BaseDataSource() {
         return getResult { ApiService.getApiService.getPrevMatch(id) }
     }
 
+    override suspend fun getDetailMatch(id: String): Result<ResponseMatch> {
+        return getResult { ApiService.getApiService.getDetailMatch(id) }
+    }
+
+    override suspend fun getSearchMatch(e: String): Result<ResponseMatch> {
+        return getResult { ApiService.getApiService.getSearchMatch(e) }
+    }
+
     companion object{
         private var INSTANCE: RemoteRepository? = null
         fun getInstance() = INSTANCE ?: RemoteRepository()

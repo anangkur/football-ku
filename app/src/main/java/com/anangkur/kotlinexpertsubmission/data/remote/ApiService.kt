@@ -23,6 +23,12 @@ interface ApiService {
     @GET("eventsnextleague.php")
     suspend fun getNextMatch(@Query("id") id: String): Response<ResponseMatch>
 
+    @GET("lookupevent.php")
+    suspend fun getDetailMatch(@Query("id") id: String): Response<ResponseMatch>
+
+    @GET("searchevents.php")
+    suspend fun getSearchMatch(@Query("e") e: String): Response<ResponseMatch>
+
     companion object Factory{
         val getApiService: ApiService by lazy {
 
