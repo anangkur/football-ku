@@ -9,6 +9,7 @@ import com.anangkur.kotlinexpertsubmission.feature.leagueDetail.detail.DetailLea
 import com.anangkur.kotlinexpertsubmission.feature.leagueDetail.nextMatch.NextMatchViewModel
 import com.anangkur.kotlinexpertsubmission.feature.leagueDetail.prevMatch.PrevMatchViewModel
 import com.anangkur.kotlinexpertsubmission.feature.matchDetail.MatchDetailViewModel
+import com.anangkur.kotlinexpertsubmission.feature.matchSearch.MatchSearchViewModel
 
 class ViewModelFactory(private val repository: Repository): ViewModelProvider.NewInstanceFactory() {
 
@@ -21,6 +22,7 @@ class ViewModelFactory(private val repository: Repository): ViewModelProvider.Ne
                 isAssignableFrom(NextMatchViewModel::class.java) -> NextMatchViewModel(repository)
                 isAssignableFrom(PrevMatchViewModel::class.java) -> PrevMatchViewModel(repository)
                 isAssignableFrom(MatchDetailViewModel::class.java) -> MatchDetailViewModel(repository)
+                isAssignableFrom(MatchSearchViewModel::class.java) -> MatchSearchViewModel(repository)
                 else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
             }
         } as T

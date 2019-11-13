@@ -70,6 +70,44 @@ class Repository(private val remoteRepository: RemoteRepository, private val loc
         }
     }
 
+    fun getDetailMatch(id: String): LiveData<Result<ResponseMatch>>{
+        return liveData(Dispatchers.IO){
+            emit(Result.loading())
+            val response =  remoteRepository.getDetailMatch(id)
+            val responseLive = MutableLiveData<Result<ResponseMatch>>()
+            if (response.status == Result.Status.SUCCESS){
+                withContext(Dispatchers.Main){
+                    responseLive.value = response
+                    emitSource(responseLive)
+                }
+            }else if (response.status == Result.Status.ERROR){
+                withContext(Dispatchers.Main){
+                    emit(Result.error(response.message?:""))
+                    emitSource(responseLive)
+                }
+            }
+        }
+    }
+
+    fun getSearchMatch(e: String): LiveData<Result<ResponseSearchMatch>>{
+        return liveData(Dispatchers.IO){
+            emit(Result.loading())
+            val response = remoteRepository.getSearchMatch(e)
+            val responseLive = MutableLiveData<Result<ResponseSearchMatch>>()
+            if (response.status == Result.Status.SUCCESS){
+                withContext(Dispatchers.Main){
+                    responseLive.value = response
+                    emitSource(responseLive)
+                }
+            }else if (response.status == Result.Status.ERROR){
+                withContext(Dispatchers.Main){
+                    emit(Result.error(response.message?:""))
+                    emitSource(responseLive)
+                }
+            }
+        }
+    }
+
     companion object{
         @Volatile private var INSTANCE: Repository? = null
         fun getInstance(remoteRepository: RemoteRepository, localRepository: LocalRepository) = INSTANCE ?: synchronized(Repository::class.java){

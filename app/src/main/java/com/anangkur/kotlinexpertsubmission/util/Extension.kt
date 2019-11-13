@@ -101,14 +101,20 @@ fun View.gone(){
 }
 
 fun convertStringToDate(date: String, time: String): String{
-    val dateUnparsed = "${date}T${time} GMT"
-    val dateFromApi = SimpleDateFormat(Const.DATE_FROM_API, Locale.getDefault()).parse(dateUnparsed)
+    val dateFromApi = try {
+        SimpleDateFormat(Const.DATE_FROM_API, Locale.getDefault()).parse("${date}T${time} GMT")
+    }catch (e: Exception){
+        SimpleDateFormat(Const.DATE_FROM_API_2, Locale.getDefault()).parse("${date}T${time}")
+    }
     return SimpleDateFormat(Const.DATE_MATCH, Locale.getDefault()).format(dateFromApi)
 }
 
 fun convertStringToTime(date: String, time: String): String{
-    val dateUnparsed = "${date}T${time} GMT"
-    val dateFromApi = SimpleDateFormat(Const.DATE_FROM_API, Locale.getDefault()).parse(dateUnparsed)
+    val dateFromApi = try {
+        SimpleDateFormat(Const.DATE_FROM_API, Locale.getDefault()).parse("${date}T${time} GMT")
+    }catch (e: Exception){
+        SimpleDateFormat(Const.DATE_FROM_API_2, Locale.getDefault()).parse("${date}T${time}")
+    }
     val timeMatch = SimpleDateFormat(Const.TIME_MATCH, Locale.getDefault()).format(dateFromApi)
     return "Pukul $timeMatch WIB"
 }

@@ -3,6 +3,7 @@ package com.anangkur.kotlinexpertsubmission.data.remote
 import com.anangkur.kotlinexpertsubmission.BuildConfig.baseUrl
 import com.anangkur.kotlinexpertsubmission.data.model.ResponseLeagueDetail
 import com.anangkur.kotlinexpertsubmission.data.model.ResponseMatch
+import com.anangkur.kotlinexpertsubmission.data.model.ResponseSearchMatch
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
@@ -22,6 +23,12 @@ interface ApiService {
 
     @GET("eventsnextleague.php")
     suspend fun getNextMatch(@Query("id") id: String): Response<ResponseMatch>
+
+    @GET("lookupevent.php")
+    suspend fun getDetailMatch(@Query("id") id: String): Response<ResponseMatch>
+
+    @GET("searchevents.php")
+    suspend fun getSearchMatch(@Query("e") e: String): Response<ResponseSearchMatch>
 
     companion object Factory{
         val getApiService: ApiService by lazy {
