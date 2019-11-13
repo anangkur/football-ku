@@ -89,11 +89,11 @@ class Repository(private val remoteRepository: RemoteRepository, private val loc
         }
     }
 
-    fun getSearchMatch(e: String): LiveData<Result<ResponseMatch>>{
+    fun getSearchMatch(e: String): LiveData<Result<ResponseSearchMatch>>{
         return liveData(Dispatchers.IO){
             emit(Result.loading())
             val response = remoteRepository.getSearchMatch(e)
-            val responseLive = MutableLiveData<Result<ResponseMatch>>()
+            val responseLive = MutableLiveData<Result<ResponseSearchMatch>>()
             if (response.status == Result.Status.SUCCESS){
                 withContext(Dispatchers.Main){
                     responseLive.value = response

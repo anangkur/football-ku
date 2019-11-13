@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/LinearVerticalDefault">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:elevation="@dimen/dimens_4dp">
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_view"
+            style="@style/SearchViewDefault"
+            app:iconifiedByDefault="false"/>
+    </androidx.appcompat.widget.Toolbar>
+    <ProgressBar
+        android:id="@+id/pb_search_match"
+        style="?android:progressBarStyleHorizontal"
+        android:indeterminate="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_match_search"
+        style="@style/RecyclerDefault"/>
+</LinearLayout>

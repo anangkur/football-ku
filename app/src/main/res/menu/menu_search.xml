@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/menu_team"
-        android:icon="@drawable/ic_pennant"
+        android:id="@+id/menu_search"
+        android:icon="@drawable/ic_search_black"
         android:title="@string/menu_teams"
         app:showAsAction="always"/>
 </menu>
