@@ -40,26 +40,55 @@ class MatchDetailActivity: BaseActivity<MatchDetailViewModel>() {
         mViewModel.getDetailMatch().observe(this, Observer {
             when(it.status){
                 Result.Status.LOADING -> {
-                    error_match_detail_1.showProgress()
-                    error_match_detail_2.showProgress()
-                    error_match_detail_1.visible()
                     error_match_detail_2.visible()
-                    collapsing_toolbar.gone()
+                    error_match_detail_2.showProgress()
                     layout_content_body.gone()
                 }
                 Result.Status.SUCCESS -> {
-                    error_match_detail_1.endProgress()
                     error_match_detail_2.endProgress()
-                    error_match_detail_1.gone()
                     error_match_detail_2.gone()
-                    collapsing_toolbar.visible()
                     layout_content_body.visible()
                     it.data?.events?.get(0)?.let { it1 -> setupDataToView(it1) }
                 }
                 Result.Status.ERROR -> {
-                    error_match_detail_1.endProgress()
                     error_match_detail_2.showError(it.message?:"", errorType = BaseErrorView.ERROR_GENERAL)
                     error_match_detail_2.setRetryClickListener { mViewModel.refreshData() }
+                }
+            }
+        })
+        mViewModel.getHomeTeam().observe(this, Observer {
+            when(it.status){
+                Result.Status.LOADING -> {
+                    error_match_detail_1.visible()
+                    error_match_detail_1.showProgress()
+                    collapsing_toolbar.gone()
+                }
+                Result.Status.SUCCESS -> {
+                    error_match_detail_1.endProgress()
+                    error_match_detail_1.gone()
+                    collapsing_toolbar.visible()
+                    it.data?.teams?.get(0)?.let { team -> iv_home.setImageUrlDarkBg(team.strTeamBadge?:"") }
+                }
+                Result.Status.ERROR -> {
+                    error_match_detail_1.endProgress()
+                }
+            }
+        })
+        mViewModel.getAwayTeam().observe(this, Observer {
+            when(it.status){
+                Result.Status.LOADING -> {
+                    error_match_detail_1.visible()
+                    error_match_detail_1.showProgress()
+                    collapsing_toolbar.gone()
+                }
+                Result.Status.SUCCESS -> {
+                    error_match_detail_1.endProgress()
+                    error_match_detail_1.gone()
+                    collapsing_toolbar.visible()
+                    it.data?.teams?.get(0)?.let { team -> iv_away.setImageUrlDarkBg(team.strTeamBadge?:"") }
+                }
+                Result.Status.ERROR -> {
+                    error_match_detail_1.endProgress()
                 }
             }
         })
