@@ -6,8 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.anangkur.kotlinexpertsubmission.R
-import com.anangkur.kotlinexpertsubmission.data.model.League
-import com.anangkur.kotlinexpertsubmission.util.Const
 import com.anangkur.kotlinexpertsubmission.util.setImageUrl
 import kotlinx.android.synthetic.main.fragment_image_slider.view.*
 

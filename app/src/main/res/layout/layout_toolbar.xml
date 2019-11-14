@@ -4,7 +4,6 @@
     style="@style/ToolbarDefault"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/colorPrimary"
     app:navigationIcon="@drawable/ic_back"
     app:title="@string/app_name"
     android:elevation="@dimen/dimens_4dp">

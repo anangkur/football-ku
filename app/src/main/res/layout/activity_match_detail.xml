@@ -10,18 +10,12 @@
         <net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
             style="@style/CollapsingDefault"
-            android:layout_height="@dimen/dimens_240dp"
+            android:layout_height="@dimen/dimens_280dp"
             app:contentScrim="@color/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:expandedTitleMarginEnd="@dimen/dimens_120dp"
             app:expandedTitleTextAppearance="@style/TextBoldSuperExtraBigWhite"
             app:collapsedTitleTextAppearance="@style/TextBoldBigWhite">
-            <ProgressBar
-                android:id="@+id/pb_layout_content_collapse"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:visibility="gone"/>
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout_content_collapse"
                 style="@style/ConstraintDefault">
@@ -107,26 +101,34 @@
                 app:navigationIcon="@drawable/ic_back"
                 app:layout_collapseMode="pin"/>
         </net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout>
+        <com.anangkur.kotlinexpertsubmission.base.BaseErrorView
+            android:id="@+id/error_match_detail_1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimens_280dp"
+            android:visibility="gone"
+            android:gravity="center"/>
     </com.google.android.material.appbar.AppBarLayout>
     <androidx.core.widget.NestedScrollView
         style="@style/NestedScrollDefault"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
         <androidx.constraintlayout.widget.ConstraintLayout
             style="@style/ConstraintWrapHeight">
-            <ProgressBar
-                android:id="@+id/pb_layout_content_body"
-                style="?android:progressBarStyleHorizontal"
+            <com.anangkur.kotlinexpertsubmission.base.BaseErrorView
+                android:id="@+id/error_match_detail_2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:indeterminate="true"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/dimens_40dp"
                 android:visibility="gone"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent" />
+                app:layout_constraintRight_toRightOf="parent"/>
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout_content_body"
                 style="@style/ConstraintDefault"
                 android:padding="@dimen/dimens_20dp"
+                android:visibility="visible"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -495,6 +497,7 @@
                     app:layout_constraintLeft_toRightOf="@id/tv_subtitute"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintHorizontal_weight="1"/>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

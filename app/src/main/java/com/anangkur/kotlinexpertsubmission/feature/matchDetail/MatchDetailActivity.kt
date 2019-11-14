@@ -7,11 +7,11 @@ import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import com.anangkur.kotlinexpertsubmission.R
 import com.anangkur.kotlinexpertsubmission.base.BaseActivity
+import com.anangkur.kotlinexpertsubmission.base.BaseErrorView
 import com.anangkur.kotlinexpertsubmission.data.model.Event
 import com.anangkur.kotlinexpertsubmission.data.model.Result
 import com.anangkur.kotlinexpertsubmission.util.*
 import kotlinx.android.synthetic.main.activity_match_detail.*
-import kotlinx.android.synthetic.main.fragment_match.*
 
 class MatchDetailActivity: BaseActivity<MatchDetailViewModel>() {
     override val mLayout: Int
@@ -40,22 +40,26 @@ class MatchDetailActivity: BaseActivity<MatchDetailViewModel>() {
         mViewModel.getDetailMatch().observe(this, Observer {
             when(it.status){
                 Result.Status.LOADING -> {
-                    pb_layout_content_collapse.visible()
-                    pb_layout_content_body.visible()
-                    layout_content_collapse.gone()
+                    error_match_detail_1.showProgress()
+                    error_match_detail_2.showProgress()
+                    error_match_detail_1.visible()
+                    error_match_detail_2.visible()
+                    collapsing_toolbar.gone()
                     layout_content_body.gone()
                 }
                 Result.Status.SUCCESS -> {
-                    pb_layout_content_collapse.gone()
-                    pb_layout_content_body.gone()
-                    layout_content_collapse.visible()
+                    error_match_detail_1.endProgress()
+                    error_match_detail_2.endProgress()
+                    error_match_detail_1.gone()
+                    error_match_detail_2.gone()
+                    collapsing_toolbar.visible()
                     layout_content_body.visible()
                     it.data?.events?.get(0)?.let { it1 -> setupDataToView(it1) }
                 }
                 Result.Status.ERROR -> {
-                    pb_layout_content_collapse.gone()
-                    pb_layout_content_body.gone()
-                    showSnackbarShort(it.message?:"")
+                    error_match_detail_1.endProgress()
+                    error_match_detail_2.showError(it.message?:"", errorType = BaseErrorView.ERROR_GENERAL)
+                    error_match_detail_2.setRetryClickListener { mViewModel.refreshData() }
                 }
             }
         })

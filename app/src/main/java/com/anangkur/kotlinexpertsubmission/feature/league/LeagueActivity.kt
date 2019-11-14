@@ -1,7 +1,5 @@
 package com.anangkur.kotlinexpertsubmission.feature.league
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -70,9 +68,5 @@ class LeagueActivity: BaseActivity<LeagueViewModel>(), LeagueActionListener {
         LeagueDetailActivity.startActivity(this, data)
     }
 
-    companion object{
-        fun startActivity(context: Context){
-            context.startActivity(Intent(context, LeagueActivity::class.java))
-        }
-    }
+    companion object
 }

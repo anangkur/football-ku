@@ -51,7 +51,7 @@ dependencies {
 
     // Dependencies for Architecture Component
     implementation "androidx.lifecycle:lifecycle-extensions:$archLifecycleVersion"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0-alpha01"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0-rc02"
     implementation "androidx.room:room-runtime:$roomVersion"
     implementation "androidx.room:room-ktx:$roomVersion"
     implementation 'androidx.appcompat:appcompat:1.1.0'
