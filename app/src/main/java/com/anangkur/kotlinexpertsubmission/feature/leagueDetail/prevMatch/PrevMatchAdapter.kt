@@ -1,5 +1,6 @@
 package com.anangkur.kotlinexpertsubmission.feature.leagueDetail.prevMatch
 
+import android.annotation.SuppressLint
 import android.view.View
 import com.anangkur.kotlinexpertsubmission.R
 import com.anangkur.kotlinexpertsubmission.base.BaseAdapter
@@ -14,6 +15,7 @@ class PrevMatchAdapter(private val actionListener: MatchActionListener): BaseAda
     override val layout: Int
         get() = R.layout.item_match_prev
 
+    @SuppressLint("SetTextI18n")
     override fun bind(data: Event, itemView: View) {
         itemView.iv_match.setImageUrl(data.strThumb?:"")
         itemView.tv_title_match.text = data.strEvent

@@ -18,7 +18,7 @@ class ViewModelFactory(private val repository: Repository): ViewModelProvider.Ne
             when {
                 isAssignableFrom(LeagueViewModel::class.java) -> LeagueViewModel(repository)
                 isAssignableFrom(LeagueDetailViewModel::class.java) -> LeagueDetailViewModel(repository)
-                isAssignableFrom(DetailLeagueViewModel::class.java) -> DetailLeagueViewModel(repository)
+                isAssignableFrom(DetailLeagueViewModel::class.java) -> DetailLeagueViewModel()
                 isAssignableFrom(NextMatchViewModel::class.java) -> NextMatchViewModel(repository)
                 isAssignableFrom(PrevMatchViewModel::class.java) -> PrevMatchViewModel(repository)
                 isAssignableFrom(MatchDetailViewModel::class.java) -> MatchDetailViewModel(repository)

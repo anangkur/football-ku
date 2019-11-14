@@ -9,7 +9,8 @@
         <ImageView
             android:id="@+id/iv_error"
             style="@style/ImageViewLeagueBig"
-            android:src="@drawable/ic_problem"/>
+            android:src="@drawable/ic_problem"
+            android:contentDescription="@string/text_todo" />
         <TextView
             android:id="@+id/tv_error"
             style="@style/TextBoldBig"

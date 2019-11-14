@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.anangkur.kotlinexpertsubmission.data.Repository
-import com.anangkur.kotlinexpertsubmission.data.model.ResponseMatch
 import com.anangkur.kotlinexpertsubmission.data.model.ResponseSearchMatch
 import com.anangkur.kotlinexpertsubmission.data.model.Result
 

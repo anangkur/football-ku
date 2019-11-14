@@ -13,24 +13,12 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
     </style>
-    <style name="LinearHorizontalDefault" parent="LinearDefault">
-        <item name="android:orientation">horizontal</item>
-    </style>
+
     <style name="LinearVerticalDefault" parent="LinearDefault">
         <item name="android:orientation">vertical</item>>
     </style>
-    <style name="LinearHorizontalWrap" parent="LinearHorizontalDefault">
-        <item name="android:layout_height">wrap_content</item>
-    </style>
-    <style name="LinearHorizontalWrapAll" parent="LinearHorizontalDefault">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-    </style>
+
     <style name="LinearVerticalWrap" parent="LinearVerticalDefault">
-        <item name="android:layout_height">wrap_content</item>
-    </style>
-    <style name="LinearVerticalWrapAll" parent="LinearVerticalDefault">
-        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
     <!--end of style for linear-->
@@ -40,29 +28,11 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
     </style>
-    <style name="RelativeWrap" parent="RelativeDefault">
-        <item name="android:layout_height">wrap_content</item>
-    </style>
+
     <style name="RelativeButton" parent="RelativeDefault">
         <item name="android:layout_height">@dimen/dimens_48dp</item>
         <item name="android:background">@drawable/rect_solid_coloraccent_rounded_100dp</item>
         <item name="android:foreground">@drawable/ripple_button_background_dark</item>
-    </style>
-    <style name="RelativeSearch" parent="RelativeDefault">
-        <item name="android:layout_height">@dimen/dimens_40dp</item>
-        <item name="android:background">@drawable/rect_stroke_gray_rounded_100dp</item>
-        <item name="android:foreground">@drawable/ripple_button_background_light</item>
-    </style>
-    <style name="RelativeSocMed" parent="RelativeDefault">
-        <item name="android:layout_width">@dimen/dimens_40dp</item>
-        <item name="android:layout_height">@dimen/dimens_40dp</item>
-        <item name="android:background">@drawable/oval_solid_colorprimary</item>
-        <item name="android:foreground">@drawable/ripple_button_background_light</item>
-    </style>
-    <style name="RelativeLeagueBig" parent="RelativeDefault">
-        <item name="android:layout_width">@dimen/dimens_100dp</item>
-        <item name="android:layout_height">@dimen/dimens_100dp</item>
-        <item name="android:background">@drawable/oval_solid_colorprimary</item>
     </style>
     <!--end of style for relative-->
 
@@ -73,10 +43,6 @@
     </style>
     <style name="ConstraintWrapHeight" parent="ConstraintDefault">
         <item name="android:layout_height">wrap_content</item>
-    </style>
-    <style name="ConstraintWrapAll" parent="ConstraintDefault">
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_width">wrap_content</item>
     </style>
     <!--end of style for constraint-->
 
@@ -105,9 +71,6 @@
     <style name="RecyclerDefault">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-    </style>
-    <style name="RecyclerWrap" parent="RecyclerDefault">
-        <item name="android:layout_height">wrap_content</item>
     </style>
     <!--end of style for recycler view-->
 
@@ -151,39 +114,12 @@
     <!--end of style for base text-->
 
     <!--style for regular text-->
-    <style name="TextRegularNormal" parent="TextNormal">
-        <item name="android:fontFamily">@font/comfortaa_regular</item>
-    </style>
     <style name="TextRegularSmall" parent="TextSmall">
-        <item name="android:fontFamily">@font/comfortaa_regular</item>
-    </style>
-    <style name="TextRegularBig" parent="TextBig">
-        <item name="android:fontFamily">@font/comfortaa_regular</item>
-    </style>
-    <style name="TextRegularExtraBig" parent="TextExtraBig">
-        <item name="android:fontFamily">@font/comfortaa_regular</item>
-    </style>
-    <style name="TextRegularSuperExtraBig" parent="TextSuperExtraBig">
         <item name="android:fontFamily">@font/comfortaa_regular</item>
     </style>
     <!--end of style for regular text-->
 
     <!--style for light text-->
-    <style name="TextLightNormal" parent="TextNormal">
-        <item name="android:fontFamily">@font/comfortaa_light</item>
-    </style>
-    <style name="TextLightSmall" parent="TextSmall">
-        <item name="android:fontFamily">@font/comfortaa_light</item>
-    </style>
-    <style name="TextLightBig" parent="TextBig">
-        <item name="android:fontFamily">@font/comfortaa_light</item>
-    </style>
-    <style name="TextLightExtraBig" parent="TextExtraBig">
-        <item name="android:fontFamily">@font/comfortaa_light</item>
-    </style>
-    <style name="TextLightSuperExtraBig" parent="TextSuperExtraBig">
-        <item name="android:fontFamily">@font/comfortaa_light</item>
-    </style>
     <!--end of style for regular text-->
 
     <!--style for bold text-->
@@ -219,10 +155,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
     </style>
-    <style name="ImageViewWrapAll" parent="ImageViewDefault">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-    </style>
+
     <style name="ImageViewHeightRatio" parent="ImageViewDefault">
         <item name="android:layout_height">@dimen/dimens_0dp</item>
         <item name="android:scaleType">centerCrop</item>
@@ -238,36 +171,12 @@
         <item name="android:layout_height">@dimen/dimens_100dp</item>
         <item name="android:src">@drawable/img_english_premier_league</item>
     </style>
-    <style name="ImageViewSocMed" parent="ImageViewDefault">
-        <item name="android:layout_width">@dimen/dimens_20dp</item>
-        <item name="android:layout_height">@dimen/dimens_20dp</item>
-        <item name="android:src">@drawable/ic_facebook</item>
-        <item name="android:elevation">@dimen/dimens_4dp</item>
-    </style>
     <!--end of style for image view-->
 
     <!--style for text input layout-->
-    <style name="TextInputLayoutDefault">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-    </style>
     <!--end of style for text input layout-->
 
     <!--style for edit text-->
-    <style name="EditTextDefault">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:fontFamily">@font/comfortaa_regular</item>
-    </style>
-    <style name="EditTextSmall" parent="EditTextDefault">
-        <item name="android:textSize">@dimen/size_12sp</item>
-    </style>
-    <style name="EditTextNormal" parent="EditTextDefault">
-        <item name="android:textSize">@dimen/size_14sp</item>
-    </style>
-    <style name="EditTextBig" parent="EditTextDefault">
-        <item name="android:textSize">@dimen/size_16sp</item>
-    </style>
     <!--end of style for edit text-->
 
     <!--style for view-->
@@ -276,11 +185,7 @@
         <item name="android:layout_height">@dimen/dimens_1dp</item>
         <item name="android:background">@color/gray</item>
     </style>
-    <style name="ViewLineVertical">
-        <item name="android:layout_width">@dimen/dimens_1dp</item>
-        <item name="android:layout_height">@dimen/dimens_0dp</item>
-        <item name="android:background">@color/gray</item>
-    </style>
+
     <style name="ViewCover">
         <item name="android:layout_width">@dimen/dimens_0dp</item>
         <item name="android:layout_height">@dimen/dimens_0dp</item>
@@ -289,10 +194,6 @@
     <!--end of style for view-->
 
     <!--style for frame-->
-    <style name="FrameDefault">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
-    </style>
     <!--end of style for frame-->
 
     <!--style for nested scroll-->
@@ -307,10 +208,7 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_width">match_parent</item>
     </style>
-    <style name="CardWrapAll" parent="CardDefault">
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_width">wrap_content</item>
-    </style>
+
     <style name="CardWrapHeight" parent="CardDefault">
         <item name="android:layout_height">wrap_content</item>
     </style>
@@ -328,10 +226,6 @@
     <style name="FABDefault">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
-    </style>
-    <style name="FABLeague" parent="FABDefault">
-        <item name="android:layout_height">@dimen/dimens_100dp</item>
-        <item name="android:layout_width">@dimen/dimens_100dp</item>
     </style>
     <!--end of style for fab-->
 

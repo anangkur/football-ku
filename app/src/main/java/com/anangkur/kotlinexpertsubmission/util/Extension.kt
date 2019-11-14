@@ -2,12 +2,10 @@ package com.anangkur.kotlinexpertsubmission.util
 
 import android.app.Activity
 import android.content.Context
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
@@ -25,18 +23,6 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import java.text.SimpleDateFormat
 import java.util.*
-
-fun showToastShort(context: Context, message: String){
-    Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
-}
-
-fun showToastLong(context: Context, message: String){
-    Toast.makeText(context, message, Toast.LENGTH_LONG).show()
-}
-
-fun Activity.showSnackbarShort(message: String){
-    Snackbar.make(this.findViewById(android.R.id.content), message, Snackbar.LENGTH_SHORT).show()
-}
 
 fun Activity.showSnackbarLong(message: String){
     Snackbar.make(this.findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG).show()
