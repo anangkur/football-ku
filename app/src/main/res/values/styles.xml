@@ -189,7 +189,7 @@
     <style name="ViewCover">
         <item name="android:layout_width">@dimen/dimens_0dp</item>
         <item name="android:layout_height">@dimen/dimens_0dp</item>
-        <item name="android:background">@color/black_40</item>
+        <item name="android:background">@color/black_60</item>
     </style>
     <!--end of style for view-->
 

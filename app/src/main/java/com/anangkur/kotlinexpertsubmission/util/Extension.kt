@@ -2,6 +2,7 @@ package com.anangkur.kotlinexpertsubmission.util
 
 import android.app.Activity
 import android.content.Context
+import android.graphics.Color
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
@@ -33,6 +34,15 @@ fun ImageView.setImageUrl(url: String){
         .load(url)
         .apply(RequestOptions().error(R.color.gray))
         .apply(RequestOptions().placeholder(createCircularProgressDrawable(this.context)))
+        .apply(RequestOptions().centerCrop())
+        .into(this)
+}
+
+fun ImageView.setImageUrlDarkBg(url: String){
+    Glide.with(this)
+        .load(url)
+        .apply(RequestOptions().error(R.color.gray))
+        .apply(RequestOptions().placeholder(createCircularProgressDrawableLight(this.context)))
         .apply(RequestOptions().centerCrop())
         .into(this)
 }
@@ -72,6 +82,15 @@ fun TabLayout.disableClickTablayout(){
 
 fun createCircularProgressDrawable(context: Context): CircularProgressDrawable {
     val circularProgressDrawable = CircularProgressDrawable(context)
+    circularProgressDrawable.strokeWidth = 4f
+    circularProgressDrawable.centerRadius = 30f
+    circularProgressDrawable.start()
+    return circularProgressDrawable
+}
+
+fun createCircularProgressDrawableLight(context: Context): CircularProgressDrawable {
+    val circularProgressDrawable = CircularProgressDrawable(context)
+    circularProgressDrawable.setColorSchemeColors(Color.WHITE)
     circularProgressDrawable.strokeWidth = 4f
     circularProgressDrawable.centerRadius = 30f
     circularProgressDrawable.start()

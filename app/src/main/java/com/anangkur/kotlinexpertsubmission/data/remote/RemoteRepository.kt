@@ -2,10 +2,7 @@ package com.anangkur.kotlinexpertsubmission.data.remote
 
 import com.anangkur.kotlinexpertsubmission.base.BaseDataSource
 import com.anangkur.kotlinexpertsubmission.data.DataSource
-import com.anangkur.kotlinexpertsubmission.data.model.ResponseLeagueDetail
-import com.anangkur.kotlinexpertsubmission.data.model.ResponseMatch
-import com.anangkur.kotlinexpertsubmission.data.model.ResponseSearchMatch
-import com.anangkur.kotlinexpertsubmission.data.model.Result
+import com.anangkur.kotlinexpertsubmission.data.model.*
 
 class RemoteRepository: DataSource, BaseDataSource() {
 
@@ -27,6 +24,10 @@ class RemoteRepository: DataSource, BaseDataSource() {
 
     override suspend fun getSearchMatch(e: String): Result<ResponseSearchMatch> {
         return getResult { ApiService.getApiService.getSearchMatch(e) }
+    }
+
+    override suspend fun getTeamDetail(id: String): Result<ResponseTeamDetail> {
+        return getResult { ApiService.getApiService.getDetailTeam(id) }
     }
 
     companion object{

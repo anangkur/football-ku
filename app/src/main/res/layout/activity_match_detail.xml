@@ -11,7 +11,7 @@
             android:id="@+id/collapsing_toolbar"
             style="@style/CollapsingDefault"
             android:layout_height="@dimen/dimens_280dp"
-            app:contentScrim="@color/colorPrimary"
+            app:contentScrim="@color/black_60"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:expandedTitleMarginEnd="@dimen/dimens_120dp"
             app:expandedTitleTextAppearance="@style/TextBoldSuperExtraBigWhite"
@@ -19,10 +19,40 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout_content_collapse"
                 style="@style/ConstraintDefault">
+                <ImageView
+                    android:id="@+id/iv_home"
+                    style="@style/ImageViewDefault"
+                    android:layout_width="@dimen/dimens_0dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/iv_away"
+                    app:layout_constraintHorizontal_weight="1"
+                    android:scaleType="fitCenter"
+                    android:background="@color/black_0"/>
+                <ImageView
+                    android:id="@+id/iv_away"
+                    style="@style/ImageViewDefault"
+                    android:layout_width="@dimen/dimens_0dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/iv_home"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintHorizontal_weight="1"
+                    android:src="@drawable/img_english_premier_league"
+                    android:scaleType="fitCenter"
+                    android:background="@color/black_0"/>
+                <View
+                    style="@style/ViewCover"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"/>
                 <TextView
                     android:id="@+id/tv_score_home"
                     style="@style/TextBoldSuperSuperExtraBig"
                     android:text="@string/dummy_score"
+                    android:textColor="@color/colorPrimary"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toTopOf="@id/tv_team_home"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -34,6 +64,7 @@
                     android:id="@+id/tv_score_away"
                     style="@style/TextBoldSuperSuperExtraBig"
                     android:text="@string/dummy_score"
+                    android:textColor="@color/colorPrimary"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toTopOf="@id/tv_team_away"
                     app:layout_constraintRight_toRightOf="parent"
@@ -44,6 +75,7 @@
                     android:id="@+id/tv_separator_score"
                     style="@style/TextBoldSuperSuperExtraBig"
                     android:text="@string/separator_score"
+                    android:textColor="@color/colorPrimary"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintRight_toLeftOf="@id/tv_score_away"
@@ -53,6 +85,7 @@
                     android:id="@+id/tv_team_home"
                     style="@style/TextBoldNormal"
                     android:text="@string/dummy_lorem_short"
+                    android:textColor="@color/colorPrimary"
                     app:layout_constraintTop_toBottomOf="@id/tv_score_home"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="@id/tv_score_home"
@@ -61,6 +94,7 @@
                     android:id="@+id/tv_team_away"
                     style="@style/TextBoldNormal"
                     android:text="@string/dummy_lorem_short"
+                    android:textColor="@color/colorPrimary"
                     app:layout_constraintTop_toBottomOf="@id/tv_score_away"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="@id/tv_score_away"
@@ -69,6 +103,7 @@
                     android:id="@+id/tv_date_match"
                     style="@style/TextBoldSmall"
                     android:text="@string/app_name"
+                    android:textColor="@color/colorPrimary"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toTopOf="@id/tv_time_match"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -79,26 +114,18 @@
                     android:id="@+id/tv_time_match"
                     style="@style/TextBoldSmall"
                     android:text="@string/app_name"
+                    android:textColor="@color/colorPrimary"
                     android:layout_marginTop="@dimen/dimens_4dp"
                     app:layout_constraintTop_toBottomOf="@id/tv_date_match"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"/>
-                <ProgressBar
-                    android:id="@+id/pb_slider_league"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    android:visibility="gone"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
-                app:navigationIcon="@drawable/ic_back"
+                app:navigationIcon="@drawable/ic_back_white"
                 app:layout_collapseMode="pin"/>
         </net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout>
         <com.anangkur.kotlinexpertsubmission.base.BaseErrorView
