@@ -8,6 +8,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import com.anangkur.kotlinexpertsubmission.R
 import com.anangkur.kotlinexpertsubmission.base.BaseActivity
+import com.anangkur.kotlinexpertsubmission.base.BaseErrorView
 import com.anangkur.kotlinexpertsubmission.data.model.Event
 import com.anangkur.kotlinexpertsubmission.data.model.Result
 import com.anangkur.kotlinexpertsubmission.feature.leagueDetail.MatchActionListener
@@ -62,18 +63,23 @@ class MatchSearchActivity: BaseActivity<MatchSearchViewModel>(), MatchActionList
         mViewModel.getSearchMatch().observe(this, Observer {result ->
             when (result.status) {
                 Result.Status.SUCCESS -> {
-                    pb_search_match.gone()
-                    recycler_match_search.visible()
                     val data = result.data?.events
-                    data?.let { mAdapter.setRecyclerData(it) }
+                    if (data.isNullOrEmpty()){
+                        error_match_search.showError(getString(R.string.error_data_null), errorType = BaseErrorView.ERROR_NULL_DATA)
+                    }else{
+                        error_match_search.endProgress()
+                        error_match_search.gone()
+                        recycler_match_search.visible()
+                        mAdapter.setRecyclerData(data)
+                    }
                 }
                 Result.Status.LOADING -> {
-                    pb_search_match.visible()
+                    error_match_search.showProgress()
+                    error_match_search.visible()
                     recycler_match_search.gone()
                 }
                 Result.Status.ERROR -> {
-                    pb_search_match.gone()
-                    showSnackbarShort(result.message?:"")
+                    error_match_search.showError(result.message?:"", errorType = BaseErrorView.ERROR_NULL_DATA)
                 }
             }
         })

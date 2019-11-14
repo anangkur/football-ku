@@ -4,16 +4,15 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import com.anangkur.kotlinexpertsubmission.R
+import com.anangkur.kotlinexpertsubmission.base.BaseErrorView
 import com.anangkur.kotlinexpertsubmission.base.BaseFragment
 import com.anangkur.kotlinexpertsubmission.data.model.Event
 import com.anangkur.kotlinexpertsubmission.data.model.League
-import com.anangkur.kotlinexpertsubmission.util.obtainViewModel
-import com.anangkur.kotlinexpertsubmission.util.setupRecyclerViewLinear
 import kotlinx.android.synthetic.main.fragment_match.*
 import com.anangkur.kotlinexpertsubmission.data.model.Result
 import com.anangkur.kotlinexpertsubmission.feature.leagueDetail.MatchActionListener
 import com.anangkur.kotlinexpertsubmission.feature.matchDetail.MatchDetailActivity
-import com.anangkur.kotlinexpertsubmission.util.showSnackbarShort
+import com.anangkur.kotlinexpertsubmission.util.*
 
 class PrevMatchFragment: BaseFragment<PrevMatchViewModel>(), MatchActionListener{
 
@@ -41,15 +40,21 @@ class PrevMatchFragment: BaseFragment<PrevMatchViewModel>(), MatchActionListener
             when (result.status) {
                 Result.Status.SUCCESS -> {
                     swipe_match.isRefreshing = false
+                    error_match.endProgress()
+                    error_match.gone()
+                    swipe_match.visible()
                     val data = result.data?.events
                     data?.let { mAdapter.setRecyclerData(it) }
                 }
                 Result.Status.LOADING -> {
-                    swipe_match.isRefreshing = true
+                    error_match.showProgress()
+                    error_match.visible()
+                    swipe_match.gone()
                 }
                 Result.Status.ERROR -> {
                     swipe_match.isRefreshing = false
-                    requireActivity().showSnackbarShort(result.message?:"")
+                    error_match.showError(result.message?:"", errorType = BaseErrorView.ERROR_GENERAL)
+                    error_match.setRetryClickListener { mViewModel.refreshData() }
                 }
             }
         })

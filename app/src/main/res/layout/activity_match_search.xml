@@ -12,14 +12,14 @@
             style="@style/SearchViewDefault"
             app:iconifiedByDefault="false"/>
     </androidx.appcompat.widget.Toolbar>
-    <ProgressBar
-        android:id="@+id/pb_search_match"
-        style="?android:progressBarStyleHorizontal"
-        android:indeterminate="true"
+    <com.anangkur.kotlinexpertsubmission.base.BaseErrorView
+        android:id="@+id/error_match_search"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"/>
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:gravity="center"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_match_search"
-        style="@style/RecyclerDefault"/>
+        style="@style/RecyclerDefault"
+        android:visibility="visible"/>
 </LinearLayout>

@@ -56,5 +56,7 @@
     <string name="label_front">Pemain Depan</string>
     <string name="label_subtitute">Pemain Pengganti</string>
     <string name="label_stat">Statistik</string>
+    <string name="btn_muat_ulang">Muat Ulang</string>
+    <string name="error_data_null">data tidak ditemukan</string>
 
 </resources>

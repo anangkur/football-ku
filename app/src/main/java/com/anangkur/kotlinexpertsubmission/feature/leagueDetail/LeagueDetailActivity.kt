@@ -8,7 +8,9 @@ import androidx.lifecycle.Observer
 import androidx.core.content.res.ResourcesCompat
 import com.anangkur.kotlinexpertsubmission.R
 import com.anangkur.kotlinexpertsubmission.base.BaseActivity
+import com.anangkur.kotlinexpertsubmission.base.BaseErrorView
 import com.anangkur.kotlinexpertsubmission.data.model.League
+import com.anangkur.kotlinexpertsubmission.data.model.LeagueDetail
 import com.anangkur.kotlinexpertsubmission.data.model.Result
 import com.anangkur.kotlinexpertsubmission.feature.custom.LeagueSliderFragment
 import com.anangkur.kotlinexpertsubmission.feature.custom.LeagueSliderTabAdapter
@@ -41,6 +43,7 @@ class LeagueDetailActivity: BaseActivity<LeagueDetailViewModel>(){
         observeViewModel()
         setupCollapsingToolbar()
         setupTabAdapter()
+        mViewModel.refreshData()
     }
 
     private fun setupCollapsingToolbar(){
@@ -54,26 +57,25 @@ class LeagueDetailActivity: BaseActivity<LeagueDetailViewModel>(){
     private fun observeViewModel(){
         mViewModel.apply {
             dataFromIntent?.let {
-                getLeagueDetail(it.id).observe(this@LeagueDetailActivity, Observer {result ->
+                getLeagueDetail().observe(this@LeagueDetailActivity, Observer {result ->
                     when (result.status) {
                         Result.Status.SUCCESS -> {
-                            pb_slider_league.gone()
-                            vp_slider.visible()
-                            val data = result.data?.leagues?.get(0)
-                            createListSlider(data?.strFanart1, data?.strFanart2, data?.strFanart3, data?.strFanart4, data?.strBadge)
-                            tabAdapter.addFragment(DetailLeagueFragment.newInstance(data), getString(R.string.tab_description))
-                            tabAdapter.addFragment(NextMatchFragment.newInstance(dataFromIntent), getString(R.string.tab_next_match))
-                            tabAdapter.addFragment(PrevMatchFragment.newInstance(dataFromIntent), getString(R.string.tab_prev_match))
-                            vp_layout.adapter = tabAdapter
-                            tab_detail.setupWithViewPager(vp_layout)
+                            error_slider.endProgress()
+                            collapsing_toolbar.visible()
+                            error_slider.gone()
+                            setupDataToView(result.data?.leagues?.get(0))
                         }
                         Result.Status.LOADING -> {
-                            pb_slider_league.visible()
-                            vp_slider.gone()
+                            error_slider.showProgress()
+                            collapsing_toolbar.gone()
+                            error_slider.visible()
                         }
                         Result.Status.ERROR -> {
-                            pb_slider_league.gone()
-                            showSnackbarLong(result.message?:"")
+                            error_slider.showError(result.message?:"", errorType = BaseErrorView.ERROR_GENERAL)
+                            error_slider.setRetryClickListener {
+                                mViewModel.refreshData()
+                            }
+                            supportActionBar?.title = ""
                         }
                     }
                 })
@@ -105,6 +107,15 @@ class LeagueDetailActivity: BaseActivity<LeagueDetailViewModel>(){
 
     private fun setupTabAdapter(){
         tabAdapter = DefaultTabAdapter(supportFragmentManager)
+    }
+
+    private fun setupDataToView(data: LeagueDetail?){
+        mViewModel.createListSlider(data?.strFanart1, data?.strFanart2, data?.strFanart3, data?.strFanart4, data?.strBadge)
+        tabAdapter.addFragment(DetailLeagueFragment.newInstance(data), getString(R.string.tab_description))
+        tabAdapter.addFragment(NextMatchFragment.newInstance(mViewModel.dataFromIntent), getString(R.string.tab_next_match))
+        tabAdapter.addFragment(PrevMatchFragment.newInstance(mViewModel.dataFromIntent), getString(R.string.tab_prev_match))
+        vp_layout.adapter = tabAdapter
+        tab_detail.setupWithViewPager(vp_layout)
     }
 
     companion object{
