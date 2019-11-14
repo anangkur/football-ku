@@ -6,6 +6,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
+        app:navigationIcon="@drawable/ic_back"
         android:elevation="@dimen/dimens_4dp">
         <androidx.appcompat.widget.SearchView
             android:id="@+id/search_view"

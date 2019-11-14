@@ -7,12 +7,6 @@
         android:id="@+id/appbar"
         style="@style/AppBarCollapsing"
         android:fitsSystemWindows="true">
-        <com.anangkur.kotlinexpertsubmission.base.BaseErrorView
-            android:id="@+id/error_match_detail_1"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dimens_280dp"
-            android:visibility="gone"
-            android:gravity="center"/>
         <net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
             style="@style/CollapsingDefault"
@@ -107,6 +101,12 @@
                 app:navigationIcon="@drawable/ic_back"
                 app:layout_collapseMode="pin"/>
         </net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout>
+        <com.anangkur.kotlinexpertsubmission.base.BaseErrorView
+            android:id="@+id/error_match_detail_1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimens_280dp"
+            android:visibility="gone"
+            android:gravity="center"/>
     </com.google.android.material.appbar.AppBarLayout>
     <androidx.core.widget.NestedScrollView
         style="@style/NestedScrollDefault"
