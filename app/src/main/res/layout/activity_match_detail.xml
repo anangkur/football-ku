@@ -39,7 +39,6 @@
                     app:layout_constraintLeft_toRightOf="@id/iv_home"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintHorizontal_weight="1"
-                    android:src="@drawable/img_english_premier_league"
                     android:scaleType="fitCenter"
                     android:background="@color/black_0"/>
                 <View

@@ -64,13 +64,14 @@ class MatchSearchActivity: BaseActivity<MatchSearchViewModel>(), MatchActionList
             when (result.status) {
                 Result.Status.SUCCESS -> {
                     val data = result.data?.events
-                    if (data.isNullOrEmpty()){
+                    val dataFiltered = data?.filter { it.strSport == Const.SPORT_SOCCER }
+                    if (dataFiltered.isNullOrEmpty()){
                         error_match_search.showError(getString(R.string.error_data_null), errorType = BaseErrorView.ERROR_NULL_DATA)
                     }else{
                         error_match_search.endProgress()
                         error_match_search.gone()
                         recycler_match_search.visible()
-                        mAdapter.setRecyclerData(data)
+                        mAdapter.setRecyclerData(dataFiltered)
                     }
                 }
                 Result.Status.LOADING -> {
