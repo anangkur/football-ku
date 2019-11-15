@@ -59,5 +59,6 @@
     <string name="error_data_null">data tidak ditemukan</string>
     <string name="text_todo">TODO</string>
     <string name="menu_favourite">Favourite</string>
+    <string name="toolbar_favourite">Favorit</string>
 
 </resources>

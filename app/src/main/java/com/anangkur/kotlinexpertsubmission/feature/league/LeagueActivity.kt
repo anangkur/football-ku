@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import com.anangkur.kotlinexpertsubmission.R
 import com.anangkur.kotlinexpertsubmission.base.BaseActivity
 import com.anangkur.kotlinexpertsubmission.data.model.League
+import com.anangkur.kotlinexpertsubmission.feature.favourite.FavouriteActivity
 import com.anangkur.kotlinexpertsubmission.feature.leagueDetail.LeagueDetailActivity
 import com.anangkur.kotlinexpertsubmission.feature.matchSearch.MatchSearchActivity
 import com.anangkur.kotlinexpertsubmission.util.obtainViewModel
@@ -49,7 +50,7 @@ class LeagueActivity: BaseActivity<LeagueViewModel>(), LeagueActionListener {
                 true
             }
             R.id.menu_favourite -> {
-                showSnackbarLong("test fav")
+                FavouriteActivity.startActivity(this)
                 true
             }
             else -> false
