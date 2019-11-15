@@ -12,6 +12,7 @@ import com.anangkur.kotlinexpertsubmission.feature.leagueDetail.LeagueDetailActi
 import com.anangkur.kotlinexpertsubmission.feature.matchSearch.MatchSearchActivity
 import com.anangkur.kotlinexpertsubmission.util.obtainViewModel
 import com.anangkur.kotlinexpertsubmission.util.setupRecyclerViewGrid
+import com.anangkur.kotlinexpertsubmission.util.showSnackbarLong
 import kotlinx.android.synthetic.main.activity_league.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
 
@@ -37,7 +38,7 @@ class LeagueActivity: BaseActivity<LeagueViewModel>(), LeagueActionListener {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_search, menu)
+        menuInflater.inflate(R.menu.menu_search_favourite, menu)
         return true
     }
 
@@ -46,7 +47,12 @@ class LeagueActivity: BaseActivity<LeagueViewModel>(), LeagueActionListener {
             R.id.menu_search -> {
                 MatchSearchActivity.startActivity(this)
                 true
-            }else -> false
+            }
+            R.id.menu_favourite -> {
+                showSnackbarLong("test fav")
+                true
+            }
+            else -> false
         }
     }
 

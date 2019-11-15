@@ -90,4 +90,7 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3Version"
 
     implementation 'net.opacapp:multiline-collapsingtoolbar:27.1.1'
+
+    // anko
+    implementation "org.jetbrains.anko:anko-sqlite:$anko_version"
 }
