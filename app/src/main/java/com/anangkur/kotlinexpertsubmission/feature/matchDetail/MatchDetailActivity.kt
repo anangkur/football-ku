@@ -16,7 +16,8 @@ import com.anangkur.kotlinexpertsubmission.feature.matchSearch.MatchSearchActivi
 import com.anangkur.kotlinexpertsubmission.util.*
 import kotlinx.android.synthetic.main.activity_match_detail.*
 
-class MatchDetailActivity: BaseActivity<MatchDetailViewModel>() {
+class MatchDetailActivity: BaseActivity<MatchDetailViewModel>(), MatchDetailActionListener {
+
     override val mLayout: Int
         get() = R.layout.activity_match_detail
     override val mViewModel: MatchDetailViewModel
@@ -151,6 +152,10 @@ class MatchDetailActivity: BaseActivity<MatchDetailViewModel>() {
 
         tv_subtitute_home.text = data.strHomeLineupSubstitutes
         tv_subtitute_away.text = data.strAwayLineupSubstitutes
+    }
+
+    override fun onClickFavourite(data: Event) {
+
     }
 
     companion object{

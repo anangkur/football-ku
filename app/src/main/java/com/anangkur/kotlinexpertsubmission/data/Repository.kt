@@ -1,5 +1,6 @@
 package com.anangkur.kotlinexpertsubmission.data
 
+import EventFavourite
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
@@ -113,6 +114,63 @@ class Repository(private val remoteRepository: RemoteRepository, private val loc
             emit(Result.loading())
             val response = remoteRepository.getTeamDetail(id)
             val responseLive = MutableLiveData<Result<ResponseTeamDetail>>()
+            if (response.status == Result.Status.SUCCESS){
+                withContext(Dispatchers.Main){
+                    responseLive.value = response
+                    emitSource(responseLive)
+                }
+            }else if (response.status == Result.Status.ERROR){
+                withContext(Dispatchers.Main){
+                    emit(Result.error(response.message?:""))
+                    emitSource(responseLive)
+                }
+            }
+        }
+    }
+
+    fun insertEventFav(data: EventFavourite): LiveData<Result<Long>>{
+        return liveData(Dispatchers.IO){
+            emit(Result.loading())
+            val response = localRepository.insertEventFav(data)
+            val responseLive = MutableLiveData<Result<Long>>()
+            if (response.status == Result.Status.SUCCESS){
+                withContext(Dispatchers.Main){
+                    responseLive.value = response
+                    emitSource(responseLive)
+                }
+            }else if (response.status == Result.Status.ERROR){
+                withContext(Dispatchers.Main){
+                    emit(Result.error(response.message?:""))
+                    emitSource(responseLive)
+                }
+            }
+        }
+    }
+
+    fun selectAllEventFav(): LiveData<Result<List<EventFavourite>>>{
+        return liveData(Dispatchers.IO){
+            emit(Result.loading())
+            val response = localRepository.selectAllEventFav()
+            val responseLive = MutableLiveData<Result<List<EventFavourite>>>()
+            if (response.status == Result.Status.SUCCESS){
+                withContext(Dispatchers.Main){
+                    responseLive.value = response
+                    emitSource(responseLive)
+                }
+            }else if (response.status == Result.Status.ERROR){
+                withContext(Dispatchers.Main){
+                    emit(Result.error(response.message?:""))
+                    emitSource(responseLive)
+                }
+            }
+        }
+    }
+
+    fun selectEventFavById(id: String): LiveData<Result<EventFavourite>>{
+        return liveData(Dispatchers.IO){
+            emit(Result.loading())
+            val response = localRepository.selectEventById(id)
+            val responseLive = MutableLiveData<Result<EventFavourite>>()
             if (response.status == Result.Status.SUCCESS){
                 withContext(Dispatchers.Main){
                     responseLive.value = response

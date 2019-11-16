@@ -45,7 +45,7 @@ data class Event(
     @SerializedName("idHomeTeam") val idHomeTeam: String? = "",
     @SerializedName("idAwayTeam") val idAwayTeam: String? = "",
     @SerializedName("strResult") val strResult: String? = "",
-    @SerializedName("strThumb") val strThumb: String?? = "",
+    @SerializedName("strThumb") val strThumb: String? = "",
     @SerializedName("strTweet1") val strTweet1: String? = "",
     @SerializedName("strTweet2") val strTweet2: String? = "",
     @SerializedName("strTweet3") val strTweet3: String? = "",

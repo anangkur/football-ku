@@ -1,14 +1,100 @@
 package com.anangkur.kotlinexpertsubmission.data.local
 
+import EventFavourite
 import android.annotation.SuppressLint
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.anangkur.kotlinexpertsubmission.R
 import com.anangkur.kotlinexpertsubmission.data.DataSource
+import com.anangkur.kotlinexpertsubmission.data.local.ankoSqlite.MyDatabaseOpenHelper
 import com.anangkur.kotlinexpertsubmission.data.model.League
+import com.anangkur.kotlinexpertsubmission.data.model.Result
+import org.jetbrains.anko.db.classParser
+import org.jetbrains.anko.db.delete
+import org.jetbrains.anko.db.insert
+import org.jetbrains.anko.db.select
 
-class LocalRepository(private val context: Context): DataSource {
+class LocalRepository(private val context: Context, private val database: MyDatabaseOpenHelper): DataSource {
+
+    override suspend fun selectEventById(id: String): Result<EventFavourite> {
+        Result.loading(null)
+        return try {
+            database.use {
+                val result = select(EventFavourite.TABLE_EVENT)
+                    .whereArgs("(${EventFavourite.COLUMN_ID} = {id})", "id" to id)
+                Result.success(result.parseSingle(classParser()))
+            }
+        }catch (e:Exception){
+            return Result.error(e.message?:"Terjadi kesalahan")
+        }
+    }
+
+    override suspend fun deleteEventFav(id: String): Result<Long> {
+        Result.loading(null)
+        return try {
+            database.use {
+                delete(EventFavourite.TABLE_EVENT, "(${EventFavourite.COLUMN_ID} = {id})", "id" to id)
+                Result.success(0)
+            }
+        }catch (e: Exception){
+            Result.error(e.message?:"Terjadi kesalahan")
+        }
+    }
+
+    override suspend fun selectAllEventFav(): Result<List<EventFavourite>> {
+        Result.loading(null)
+        return try{
+            val returnData = ArrayList<EventFavourite>()
+            database.use {
+                val result = select(EventFavourite.TABLE_EVENT)
+                returnData.addAll(result.parseList(classParser()))
+            }
+            Result.success(returnData)
+        }catch (e: Exception){
+            Result.error(e.message?:"Terjadi kesalahan")
+        }
+    }
+
+    override suspend fun insertEventFav(data: EventFavourite): Result<Long> {
+        Result.loading(null)
+        return try {
+             database.use {
+                insert(EventFavourite.TABLE_EVENT,
+                    EventFavourite.COLUMN_ID to data.idEvent,
+                    EventFavourite.COLUMN_HOME_SCORE to data.intHomeScore,
+                    EventFavourite.COLUMN_AWAY_SCORE to data.intAwayScore,
+                    EventFavourite.COLUMN_HOME_TEAM to data.strHomeTeam,
+                    EventFavourite.COLUMN_AWAY_TEAM to data.strAwayTeam,
+                    EventFavourite.COLUMN_TIME to data.strTime,
+                    EventFavourite.COLUMN_DATE to data.dateEvent,
+                    EventFavourite.COLUMN_HOME_GOAL to data.strHomeGoalDetails,
+                    EventFavourite.COLUMN_AWAY_GOAL to data.strAwayGoalDetails,
+                    EventFavourite.COLUMN_HOME_SHOOT to data.intHomeShots,
+                    EventFavourite.COLUMN_AWAY_SHOOT to data.intAwayShots,
+                    EventFavourite.COLUMN_HOME_FORMATION to data.strHomeFormation,
+                    EventFavourite.COLUMN_AWAY_FORMATION to data.strAwayFormation,
+                    EventFavourite.COLUMN_HOME_YELLOW to data.strHomeYellowCards,
+                    EventFavourite.COLUMN_AWAY_YELLOW to data.strAwayYellowCards,
+                    EventFavourite.COLUMN_HOME_RED to data.strHomeRedCards,
+                    EventFavourite.COLUMN_AWAY_RED to data.strAwayRedCards,
+                    EventFavourite.COLUMN_HOME_KEEPER to data.strHomeLineupGoalkeeper,
+                    EventFavourite.COLUMN_AWAY_KEEPER to data.strAwayLineupGoalkeeper,
+                    EventFavourite.COLUMN_HOME_DEFENSE to data.strHomeLineupDefense,
+                    EventFavourite.COLUMN_AWAY_DEFENSE to data.strAwayLineupDefense,
+                    EventFavourite.COLUMN_HOME_MIDFIELD to data.strHomeLineupMidfield,
+                    EventFavourite.COLUMN_AWAY_MIDFIELD to data.strAwayLineupMidfield,
+                    EventFavourite.COLUMN_HOME_FORWARD to data.strHomeLineupForward,
+                    EventFavourite.COLUMN_AWAY_FORWARD to data.strAwayLineupForward,
+                    EventFavourite.COLUMN_HOME_SUBTITUTE to data.strHomeLineupSubstitutes,
+                    EventFavourite.COLUMN_AWAY_SUBTITUTE to data.strAwayLineupSubstitutes)
+            }
+            Result.success(0)
+        }catch (e: Exception){
+            e.printStackTrace()
+            Result.error(e.message?:"Terjadi kesalahan")
+        }
+    }
 
     override fun createDummyLeague(): LiveData<List<League>> {
         val leagueListLiveData = MutableLiveData<List<League>>()
@@ -90,6 +176,6 @@ class LocalRepository(private val context: Context): DataSource {
     companion object{
         @SuppressLint("StaticFieldLeak")
         private var INSTANCE: LocalRepository? = null
-        fun getInstance(context: Context) = INSTANCE ?: LocalRepository(context)
+        fun getInstance(context: Context, database: MyDatabaseOpenHelper) = INSTANCE ?: LocalRepository(context, database)
     }
 }

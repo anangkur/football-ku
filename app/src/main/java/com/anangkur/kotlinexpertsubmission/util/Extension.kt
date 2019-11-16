@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.anangkur.kotlinexpertsubmission.R
 import com.anangkur.kotlinexpertsubmission.data.ViewModelFactory
+import com.anangkur.kotlinexpertsubmission.data.local.ankoSqlite.MyDatabaseOpenHelper
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.snackbar.Snackbar
@@ -123,3 +124,5 @@ fun convertStringToTime(date: String, time: String): String{
     val timeMatch = SimpleDateFormat(Const.TIME_MATCH, Locale.getDefault()).format(dateFromApi)
     return "Pukul $timeMatch WIB"
 }
+
+val Context.database: MyDatabaseOpenHelper get() = MyDatabaseOpenHelper.getInstance(applicationContext)
