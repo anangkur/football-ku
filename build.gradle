@@ -31,6 +31,7 @@ ext {
 
     roomVersion = '2.2.1'
     archLifecycleVersion = '2.1.0'
+    liveDataVersion = '2.2.0-rc02'
     archVersion = '1.1.1'
 
     junitVersion = '4.12'
@@ -39,12 +40,14 @@ ext {
     espressoVersion = '3.1.0'
     dexMakerVersion = "1.2"
 
-    glideVersion = '4.9.0'
+    glideVersion = '4.10.0'
 
     retrofitVersion = '2.6.1'
     okhttp3Version = '3.12.0'
 
     anko_version='0.10.8'
+
+    multilineCollapsingVersion='27.1.1'
 }
 
 allprojects {
