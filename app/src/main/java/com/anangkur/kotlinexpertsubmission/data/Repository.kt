@@ -1,6 +1,6 @@
 package com.anangkur.kotlinexpertsubmission.data
 
-import EventFavourite
+import com.anangkur.kotlinexpertsubmission.data.local.ankoSqlite.EventFavourite
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
@@ -171,6 +171,25 @@ class Repository(private val remoteRepository: RemoteRepository, private val loc
             emit(Result.loading())
             val response = localRepository.selectEventById(id)
             val responseLive = MutableLiveData<Result<EventFavourite>>()
+            if (response.status == Result.Status.SUCCESS){
+                withContext(Dispatchers.Main){
+                    responseLive.value = response
+                    emitSource(responseLive)
+                }
+            }else if (response.status == Result.Status.ERROR){
+                withContext(Dispatchers.Main){
+                    emit(Result.error(response.message?:""))
+                    emitSource(responseLive)
+                }
+            }
+        }
+    }
+
+    fun deleteEventFav(id: String): LiveData<Result<Long>>{
+        return liveData(Dispatchers.IO){
+            emit(Result.loading())
+            val response = localRepository.deleteEventFav(id)
+            val responseLive = MutableLiveData<Result<Long>>()
             if (response.status == Result.Status.SUCCESS){
                 withContext(Dispatchers.Main){
                     responseLive.value = response

@@ -6,13 +6,13 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.anangkur.kotlinexpertsubmission.R
 import com.anangkur.kotlinexpertsubmission.base.BaseActivity
 import com.anangkur.kotlinexpertsubmission.base.BaseErrorView
 import com.anangkur.kotlinexpertsubmission.data.model.Event
 import com.anangkur.kotlinexpertsubmission.data.model.Result
-import com.anangkur.kotlinexpertsubmission.feature.matchSearch.MatchSearchActivity
 import com.anangkur.kotlinexpertsubmission.util.*
 import kotlinx.android.synthetic.main.activity_match_detail.*
 
@@ -27,6 +27,8 @@ class MatchDetailActivity: BaseActivity<MatchDetailViewModel>(), MatchDetailActi
     override val mTitleToolbar: String
         get() = ""
 
+    private var menu: Menu? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -38,13 +40,14 @@ class MatchDetailActivity: BaseActivity<MatchDetailViewModel>(), MatchDetailActi
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_favourite, menu)
+        this.menu = menu
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId){
             R.id.menu_favourite -> {
-                showSnackbarLong("test fav")
+                mViewModel.dataFromIntent?.let { this.onClickFavourite(it) }
                 true
             }
             else -> false
@@ -111,6 +114,51 @@ class MatchDetailActivity: BaseActivity<MatchDetailViewModel>(), MatchDetailActi
                 }
             }
         })
+        mViewModel.selectEventById().observe(this, Observer {
+            when(it.status){
+                Result.Status.LOADING -> {
+
+                }
+                Result.Status.SUCCESS -> {
+                    mViewModel.isFavourite = true
+                    menu?.let { menu -> menu.getItem(0).icon = ContextCompat.getDrawable(this, R.drawable.ic_favorite_white_24dp) }
+                }
+                Result.Status.ERROR -> {
+                    mViewModel.isFavourite = false
+                    menu?.let { menu -> menu.getItem(0).icon = ContextCompat.getDrawable(this, R.drawable.ic_favorite_border_white_24dp) }
+                }
+            }
+        })
+        mViewModel.insertEvent().observe(this, Observer {
+            when(it.status){
+                Result.Status.LOADING -> {
+
+                }
+                Result.Status.SUCCESS -> {
+                    showSnackbarLong("Sukses menambahkan data ke dalam favorit")
+                    menu?.let { menu -> menu.getItem(0).icon = ContextCompat.getDrawable(this, R.drawable.ic_favorite_white_24dp) }
+                }
+                Result.Status.ERROR -> {
+                    showSnackbarLong("Gagal menambahkan data ke dalam favorit")
+                    menu?.let { menu -> menu.getItem(0).icon = ContextCompat.getDrawable(this, R.drawable.ic_favorite_border_white_24dp) }
+                }
+            }
+        })
+        mViewModel.deleteEvent().observe(this, Observer {
+            when(it.status){
+                Result.Status.LOADING -> {
+
+                }
+                Result.Status.SUCCESS -> {
+                    showSnackbarLong("Sukses menghapus data dari dalam favorit")
+                    menu?.let { menu -> menu.getItem(0).icon = ContextCompat.getDrawable(this, R.drawable.ic_favorite_border_white_24dp) }
+                }
+                Result.Status.ERROR -> {
+                    showSnackbarLong("Gagal menghapus data dari dalam favorit")
+                    menu?.let { menu -> menu.getItem(0).icon = ContextCompat.getDrawable(this, R.drawable.ic_favorite_white_24dp) }
+                }
+            }
+        })
     }
 
     private fun setupDataToView(data: Event){
@@ -155,7 +203,13 @@ class MatchDetailActivity: BaseActivity<MatchDetailViewModel>(), MatchDetailActi
     }
 
     override fun onClickFavourite(data: Event) {
-
+        if (mViewModel.isFavourite){
+            mViewModel.deleteEventData(data.toEventFavourite())
+            mViewModel.isFavourite = false
+        }else{
+            mViewModel.insertEventData(data.toEventFavourite())
+            mViewModel.isFavourite = true
+        }
     }
 
     companion object{

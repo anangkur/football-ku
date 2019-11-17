@@ -1,6 +1,6 @@
 package com.anangkur.kotlinexpertsubmission.data
 
-import EventFavourite
+import com.anangkur.kotlinexpertsubmission.data.local.ankoSqlite.EventFavourite
 import androidx.lifecycle.LiveData
 import com.anangkur.kotlinexpertsubmission.data.model.*
 

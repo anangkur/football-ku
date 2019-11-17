@@ -10,8 +10,11 @@ class MyDatabaseOpenHelper(context: Context): ManagedSQLiteOpenHelper(context, C
         db.createTable(
             EventFavourite.TABLE_EVENT, true,
             EventFavourite.COLUMN_ID to TEXT + PRIMARY_KEY,
-            EventFavourite.COLUMN_HOME_SCORE to INTEGER,
-            EventFavourite.COLUMN_AWAY_SCORE to INTEGER,
+            EventFavourite.COLUMN_EVENT_NAME to TEXT,
+            EventFavourite.COLUMN_ID_HOME_TEAM to TEXT,
+            EventFavourite.COLUMN_ID_AWAY_TEAM to TEXT,
+            EventFavourite.COLUMN_HOME_SCORE to TEXT,
+            EventFavourite.COLUMN_AWAY_SCORE to TEXT,
             EventFavourite.COLUMN_HOME_TEAM to TEXT,
             EventFavourite.COLUMN_AWAY_TEAM to TEXT,
             EventFavourite.COLUMN_TIME to TEXT,

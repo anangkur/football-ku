@@ -1,6 +1,6 @@
 package com.anangkur.kotlinexpertsubmission.data.local
 
-import EventFavourite
+import com.anangkur.kotlinexpertsubmission.data.local.ankoSqlite.EventFavourite
 import android.annotation.SuppressLint
 import android.content.Context
 import androidx.lifecycle.LiveData
@@ -23,9 +23,15 @@ class LocalRepository(private val context: Context, private val database: MyData
             database.use {
                 val result = select(EventFavourite.TABLE_EVENT)
                     .whereArgs("(${EventFavourite.COLUMN_ID} = {id})", "id" to id)
-                Result.success(result.parseSingle(classParser()))
+                val returnResult = result.parseList(classParser<EventFavourite>())
+                if (!returnResult.isNullOrEmpty()){
+                    Result.success(returnResult[0])
+                }else{
+                    Result.error("belum favorit")
+                }
             }
         }catch (e:Exception){
+            e.printStackTrace()
             return Result.error(e.message?:"Terjadi kesalahan")
         }
     }
@@ -38,6 +44,7 @@ class LocalRepository(private val context: Context, private val database: MyData
                 Result.success(0)
             }
         }catch (e: Exception){
+            e.printStackTrace()
             Result.error(e.message?:"Terjadi kesalahan")
         }
     }
@@ -52,6 +59,7 @@ class LocalRepository(private val context: Context, private val database: MyData
             }
             Result.success(returnData)
         }catch (e: Exception){
+            e.printStackTrace()
             Result.error(e.message?:"Terjadi kesalahan")
         }
     }
@@ -60,8 +68,12 @@ class LocalRepository(private val context: Context, private val database: MyData
         Result.loading(null)
         return try {
              database.use {
-                insert(EventFavourite.TABLE_EVENT,
+                insert(
+                    EventFavourite.TABLE_EVENT,
                     EventFavourite.COLUMN_ID to data.idEvent,
+                    EventFavourite.COLUMN_EVENT_NAME to data.strEvent,
+                    EventFavourite.COLUMN_ID_HOME_TEAM to data.idHomeTeam,
+                    EventFavourite.COLUMN_ID_AWAY_TEAM to data.idAwayTeam,
                     EventFavourite.COLUMN_HOME_SCORE to data.intHomeScore,
                     EventFavourite.COLUMN_AWAY_SCORE to data.intAwayScore,
                     EventFavourite.COLUMN_HOME_TEAM to data.strHomeTeam,

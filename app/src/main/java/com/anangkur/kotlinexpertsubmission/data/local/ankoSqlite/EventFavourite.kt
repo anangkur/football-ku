@@ -1,9 +1,14 @@
+package com.anangkur.kotlinexpertsubmission.data.local.ankoSqlite
+
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class EventFavourite(
     val idEvent: String? = "",
+    val strEvent: String? = "",
+    val idHomeTeam: String? = "",
+    val idAwayTeam: String? = "",
     val intHomeScore: String? = "",
     val intAwayScore: String? = "",
     val strHomeTeam: String? = "",
@@ -34,6 +39,9 @@ data class EventFavourite(
     companion object{
         const val TABLE_EVENT = "TABLE_EVENT"
         const val COLUMN_ID = "ID"
+        const val COLUMN_EVENT_NAME = "EVENT_NAME"
+        const val COLUMN_ID_HOME_TEAM = "ID_HOME_TEAM"
+        const val COLUMN_ID_AWAY_TEAM = "ID_AWAY_TEAM"
         const val COLUMN_HOME_SCORE = "HOME_SCORE"
         const val COLUMN_AWAY_SCORE = "AWAY_SCORE"
         const val COLUMN_HOME_TEAM = "HOME_TEAM"

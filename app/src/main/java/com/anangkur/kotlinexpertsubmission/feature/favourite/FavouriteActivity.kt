@@ -13,10 +13,7 @@ import com.anangkur.kotlinexpertsubmission.data.model.Result
 import com.anangkur.kotlinexpertsubmission.feature.leagueDetail.MatchActionListener
 import com.anangkur.kotlinexpertsubmission.feature.leagueDetail.nextMatch.NextMatchAdapter
 import com.anangkur.kotlinexpertsubmission.feature.matchDetail.MatchDetailActivity
-import com.anangkur.kotlinexpertsubmission.util.gone
-import com.anangkur.kotlinexpertsubmission.util.obtainViewModel
-import com.anangkur.kotlinexpertsubmission.util.setupRecyclerViewLinear
-import com.anangkur.kotlinexpertsubmission.util.visible
+import com.anangkur.kotlinexpertsubmission.util.*
 import kotlinx.android.synthetic.main.activity_favourite.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
 
@@ -38,10 +35,14 @@ class FavouriteActivity: BaseActivity<FavouriteViewModel>(), MatchActionListener
 
         observeViewModel()
         setupAdapter()
-        mViewModel.refreshData()
         swipe_favourite.setOnRefreshListener {
             mViewModel.refreshData()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mViewModel.refreshData()
     }
 
     private fun observeViewModel(){
@@ -52,36 +53,14 @@ class FavouriteActivity: BaseActivity<FavouriteViewModel>(), MatchActionListener
                         error_event_fav.endProgress()
                         error_event_fav.gone()
                         swipe_favourite.visible()
-                        val data = it.data?.map { event -> Event(
-                            idEvent = event.idEvent,
-                            dateEvent = event.dateEvent,
-                            intAwayScore = event.intAwayScore,
-                            intAwayShots = event.intAwayShots,
-                            intHomeScore = event.intHomeScore,
-                            intHomeShots = event.intHomeShots,
-                            strAwayFormation = event.strAwayFormation,
-                            strAwayGoalDetails = event.strAwayGoalDetails,
-                            strAwayLineupDefense = event.strAwayLineupDefense,
-                            strAwayLineupForward = event.strAwayLineupForward,
-                            strAwayLineupGoalkeeper = event.strAwayLineupGoalkeeper,
-                            strAwayLineupMidfield = event.strAwayLineupMidfield,
-                            strAwayLineupSubstitutes = event.strAwayLineupSubstitutes,
-                            strAwayRedCards = event.strAwayRedCards,
-                            strAwayTeam = event.strAwayTeam,
-                            strAwayYellowCards = event.strAwayYellowCards,
-                            strHomeFormation = event.strHomeFormation,
-                            strHomeGoalDetails = event.strHomeGoalDetails,
-                            strHomeLineupDefense = event.strHomeLineupDefense,
-                            strHomeLineupForward = event.strHomeLineupForward,
-                            strHomeLineupGoalkeeper = event.strHomeLineupGoalkeeper,
-                            strHomeLineupMidfield = event.strHomeLineupMidfield,
-                            strHomeLineupSubstitutes = event.strHomeLineupSubstitutes,
-                            strHomeRedCards = event.strHomeRedCards,
-                            strHomeTeam = event.strHomeTeam,
-                            strHomeYellowCards = event.strHomeYellowCards,
-                            strTime = event.strTime
-                        ) }
-                        data?.let { it1 -> mAdapter.setRecyclerData(it1) }
+                        val data = it.data
+                        if (data.isNullOrEmpty()){
+                            error_event_fav.visible()
+                            swipe_favourite.gone()
+                            error_event_fav.showError(getString(R.string.error_favourite_null), errorType = BaseErrorView.ERROR_NULL_DATA)
+                        }else{
+                            mAdapter.setRecyclerData(data.map { event -> event.toEvent() })
+                        }
                     }
                     Result.Status.LOADING -> {
                         error_event_fav.showProgress()
