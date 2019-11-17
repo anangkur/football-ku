@@ -13,7 +13,6 @@ import com.anangkur.kotlinexpertsubmission.feature.leagueDetail.LeagueDetailActi
 import com.anangkur.kotlinexpertsubmission.feature.matchSearch.MatchSearchActivity
 import com.anangkur.kotlinexpertsubmission.util.obtainViewModel
 import com.anangkur.kotlinexpertsubmission.util.setupRecyclerViewGrid
-import com.anangkur.kotlinexpertsubmission.util.showSnackbarLong
 import kotlinx.android.synthetic.main.activity_league.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
 

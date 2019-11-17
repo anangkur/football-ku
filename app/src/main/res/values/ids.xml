@@ -1,6 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <item name="tv_title" type="id"/>
-    <item name="tv_desc" type="id"/>
-    <item name="iv_teams" type="id"/>
-</resources>
+<resources></resources>
