@@ -1,5 +1,6 @@
 package com.anangkur.kotlinexpertsubmission.util
 
+import com.anangkur.kotlinexpertsubmission.data.local.ankoSqlite.EventFavourite
 import android.app.Activity
 import android.content.Context
 import android.graphics.Color
@@ -18,6 +19,8 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.anangkur.kotlinexpertsubmission.R
 import com.anangkur.kotlinexpertsubmission.data.ViewModelFactory
+import com.anangkur.kotlinexpertsubmission.data.local.ankoSqlite.MyDatabaseOpenHelper
+import com.anangkur.kotlinexpertsubmission.data.model.Event
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.snackbar.Snackbar
@@ -123,3 +126,71 @@ fun convertStringToTime(date: String, time: String): String{
     val timeMatch = SimpleDateFormat(Const.TIME_MATCH, Locale.getDefault()).format(dateFromApi)
     return "Pukul $timeMatch WIB"
 }
+
+val Context.database: MyDatabaseOpenHelper get() = MyDatabaseOpenHelper.getInstance(applicationContext)
+
+fun Event.toEventFavourite() = EventFavourite(
+    idEvent = this.idEvent,
+    strEvent = this.strEvent,
+    idHomeTeam = this.idHomeTeam,
+    idAwayTeam = this.idAwayTeam,
+    dateEvent = this.dateEvent,
+    intAwayScore = this.intAwayScore,
+    intAwayShots = this.intAwayShots,
+    intHomeScore = this.intHomeScore,
+    intHomeShots = this.intHomeShots,
+    strAwayFormation = this.strAwayFormation,
+    strAwayGoalDetails = this.strAwayGoalDetails,
+    strAwayLineupDefense = this.strAwayLineupDefense,
+    strAwayLineupForward = this.strAwayLineupForward,
+    strAwayLineupGoalkeeper = this.strAwayLineupGoalkeeper,
+    strAwayLineupMidfield = this.strAwayLineupMidfield,
+    strAwayLineupSubstitutes = this.strAwayLineupSubstitutes,
+    strAwayRedCards = this.strAwayRedCards,
+    strAwayTeam = this.strAwayTeam,
+    strAwayYellowCards = this.strAwayYellowCards,
+    strHomeFormation = this.strHomeFormation,
+    strHomeGoalDetails = this.strHomeGoalDetails,
+    strHomeLineupDefense = this.strHomeLineupDefense,
+    strHomeLineupForward = this.strHomeLineupForward,
+    strHomeLineupGoalkeeper = this.strHomeLineupGoalkeeper,
+    strHomeLineupMidfield = this.strHomeLineupMidfield,
+    strHomeLineupSubstitutes = this.strHomeLineupSubstitutes,
+    strHomeRedCards = this.strHomeRedCards,
+    strHomeTeam = this.strHomeTeam,
+    strHomeYellowCards = this.strHomeYellowCards,
+    strTime = this.strTime
+)
+
+fun EventFavourite.toEvent() = Event(
+    idEvent = this.idEvent,
+    strEvent = this.strEvent,
+    idHomeTeam = this.idHomeTeam,
+    idAwayTeam = this.idAwayTeam,
+    dateEvent = this.dateEvent,
+    intAwayScore = this.intAwayScore,
+    intAwayShots = this.intAwayShots,
+    intHomeScore = this.intHomeScore,
+    intHomeShots = this.intHomeShots,
+    strAwayFormation = this.strAwayFormation,
+    strAwayGoalDetails = this.strAwayGoalDetails,
+    strAwayLineupDefense = this.strAwayLineupDefense,
+    strAwayLineupForward = this.strAwayLineupForward,
+    strAwayLineupGoalkeeper = this.strAwayLineupGoalkeeper,
+    strAwayLineupMidfield = this.strAwayLineupMidfield,
+    strAwayLineupSubstitutes = this.strAwayLineupSubstitutes,
+    strAwayRedCards = this.strAwayRedCards,
+    strAwayTeam = this.strAwayTeam,
+    strAwayYellowCards = this.strAwayYellowCards,
+    strHomeFormation = this.strHomeFormation,
+    strHomeGoalDetails = this.strHomeGoalDetails,
+    strHomeLineupDefense = this.strHomeLineupDefense,
+    strHomeLineupForward = this.strHomeLineupForward,
+    strHomeLineupGoalkeeper = this.strHomeLineupGoalkeeper,
+    strHomeLineupMidfield = this.strHomeLineupMidfield,
+    strHomeLineupSubstitutes = this.strHomeLineupSubstitutes,
+    strHomeRedCards = this.strHomeRedCards,
+    strHomeTeam = this.strHomeTeam,
+    strHomeYellowCards = this.strHomeYellowCards,
+    strTime = this.strTime
+)

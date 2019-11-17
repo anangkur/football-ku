@@ -7,4 +7,6 @@ object Const {
     const val TIME_MATCH = "HH:mm"
 
     const val SPORT_SOCCER = "Soccer"
+
+    const val DATABASE_NAME = "KotlinExpert.db"
 }
