@@ -135,11 +135,11 @@ class MatchDetailActivity: BaseActivity<MatchDetailViewModel>(), MatchDetailActi
 
                 }
                 Result.Status.SUCCESS -> {
-                    showSnackbarLong("Sukses menambahkan data ke dalam favorit")
+                    showSnackbarLong(getString(R.string.message_add_fav_success))
                     menu?.let { menu -> menu.getItem(0).icon = ContextCompat.getDrawable(this, R.drawable.ic_favorite_white_24dp) }
                 }
                 Result.Status.ERROR -> {
-                    showSnackbarLong("Gagal menambahkan data ke dalam favorit")
+                    showSnackbarLong(getString(R.string.message_add_fav_fail))
                     menu?.let { menu -> menu.getItem(0).icon = ContextCompat.getDrawable(this, R.drawable.ic_favorite_border_white_24dp) }
                 }
             }
@@ -150,11 +150,11 @@ class MatchDetailActivity: BaseActivity<MatchDetailViewModel>(), MatchDetailActi
 
                 }
                 Result.Status.SUCCESS -> {
-                    showSnackbarLong("Sukses menghapus data dari dalam favorit")
+                    showSnackbarLong(getString(R.string.message_delete_fav_success))
                     menu?.let { menu -> menu.getItem(0).icon = ContextCompat.getDrawable(this, R.drawable.ic_favorite_border_white_24dp) }
                 }
                 Result.Status.ERROR -> {
-                    showSnackbarLong("Gagal menghapus data dari dalam favorit")
+                    showSnackbarLong(getString(R.string.message_delete_fav_fail))
                     menu?.let { menu -> menu.getItem(0).icon = ContextCompat.getDrawable(this, R.drawable.ic_favorite_white_24dp) }
                 }
             }
