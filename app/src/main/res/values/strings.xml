@@ -61,5 +61,9 @@
     <string name="menu_favourite">Favourite</string>
     <string name="toolbar_favourite">Favorit</string>
     <string name="error_favourite_null">data favorit kosong</string>
+    <string name="message_add_fav_success">Sukses menambahkan data ke dalam favorit</string>
+    <string name="message_add_fav_fail">Gagal menambahkan data ke dalam favorit</string>
+    <string name="message_delete_fav_success">Sukses menghapus data dari dalam favorit</string>
+    <string name="message_delete_fav_fail">Gagal menghapus data dari dalam favorit</string>
 
 </resources>
