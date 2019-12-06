@@ -7,6 +7,7 @@ import androidx.lifecycle.liveData
 import com.anangkur.kotlinexpertsubmission.data.local.LocalRepository
 import com.anangkur.kotlinexpertsubmission.data.model.*
 import com.anangkur.kotlinexpertsubmission.data.remote.RemoteRepository
+import com.anangkur.kotlinexpertsubmission.util.EspressoIdlingResource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -91,6 +92,7 @@ class Repository(private val remoteRepository: RemoteRepository, private val loc
     }
 
     fun getSearchMatch(e: String): LiveData<Result<ResponseSearchMatch>>{
+        EspressoIdlingResource.increment()
         return liveData(Dispatchers.IO){
             emit(Result.loading())
             val response = remoteRepository.getSearchMatch(e)
@@ -99,11 +101,13 @@ class Repository(private val remoteRepository: RemoteRepository, private val loc
                 withContext(Dispatchers.Main){
                     responseLive.value = response
                     emitSource(responseLive)
+                    EspressoIdlingResource.decrement()
                 }
             }else if (response.status == Result.Status.ERROR){
                 withContext(Dispatchers.Main){
                     emit(Result.error(response.message?:""))
                     emitSource(responseLive)
+                    EspressoIdlingResource.decrement()
                 }
             }
         }
