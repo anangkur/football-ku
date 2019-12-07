@@ -11,7 +11,7 @@ class LeagueAdapter(private val actionListener: LeagueActionListener): BaseAdapt
     override val layout: Int
         get() = R.layout.item_league
 
-    override fun bind(data: League, itemView: View) {
+    override fun bind(data: League, itemView: View, position: Int) {
         itemView.iv_league.setImageResource(data.image)
         itemView.tv_title_league.text = data.title
         itemView.tv_desc_league.text = data.description

@@ -16,7 +16,7 @@ class PrevMatchAdapter(private val actionListener: MatchActionListener): BaseAda
         get() = R.layout.item_match_prev
 
     @SuppressLint("SetTextI18n")
-    override fun bind(data: Event, itemView: View) {
+    override fun bind(data: Event, itemView: View, position: Int) {
         itemView.iv_match.setImageUrl(data.strThumb?:"")
         itemView.tv_title_match.text = data.strEvent
         itemView.tv_date_match.text = convertStringToDate(data.dateEvent?:"", data.strTime?:"")

@@ -13,6 +13,7 @@ import com.anangkur.kotlinexpertsubmission.data.model.Result
 import com.anangkur.kotlinexpertsubmission.feature.leagueDetail.MatchActionListener
 import com.anangkur.kotlinexpertsubmission.feature.matchDetail.MatchDetailActivity
 import com.anangkur.kotlinexpertsubmission.util.*
+import com.anangkur.kotlinexpertsubmission.util.Const.ARGS_LEAGUE
 
 class PrevMatchFragment: BaseFragment<PrevMatchViewModel>(), MatchActionListener{
 
@@ -71,8 +72,6 @@ class PrevMatchFragment: BaseFragment<PrevMatchViewModel>(), MatchActionListener
     }
 
     companion object{
-
-        private const val ARGS_LEAGUE = "ARGS_LEAGUE"
 
         fun newInstance(data: League?) = PrevMatchFragment().apply {
             arguments = Bundle(1).apply {

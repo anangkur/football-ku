@@ -171,6 +171,11 @@
         <item name="android:layout_height">@dimen/dimens_100dp</item>
         <item name="android:src">@drawable/img_english_premier_league</item>
     </style>
+    <style name="ImageViewTeamSmall" parent="ImageViewDefault">
+        <item name="android:layout_width">@dimen/dimens_40dp</item>
+        <item name="android:layout_height">@dimen/dimens_40dp</item>
+        <item name="android:src">@drawable/img_english_premier_league</item>
+    </style>
     <!--end of style for image view-->
 
     <!--style for text input layout-->

@@ -1,10 +1,7 @@
 package com.anangkur.kotlinexpertsubmission.data.remote
 
 import com.anangkur.kotlinexpertsubmission.BuildConfig.baseUrl
-import com.anangkur.kotlinexpertsubmission.data.model.ResponseLeagueDetail
-import com.anangkur.kotlinexpertsubmission.data.model.ResponseMatch
-import com.anangkur.kotlinexpertsubmission.data.model.ResponseSearchMatch
-import com.anangkur.kotlinexpertsubmission.data.model.ResponseTeamDetail
+import com.anangkur.kotlinexpertsubmission.data.model.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
@@ -33,6 +30,9 @@ interface ApiService {
 
     @GET("lookupteam.php")
     suspend fun getDetailTeam(@Query("id") id: String): Response<ResponseTeamDetail>
+
+    @GET("lookuptable.php")
+    suspend fun getStanding(@Query("l") l: String): Response<ResponseStanding>
 
     companion object Factory{
         val getApiService: ApiService by lazy {

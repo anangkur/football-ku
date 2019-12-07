@@ -208,6 +208,25 @@ class Repository(private val remoteRepository: RemoteRepository, private val loc
         }
     }
 
+    fun getStanding(l: String): LiveData<Result<ResponseStanding>>{
+        return liveData {
+            emit(Result.loading())
+            val response = remoteRepository.getStanding(l)
+            val responseLive = MutableLiveData<Result<ResponseStanding>>()
+            if (response.status == Result.Status.SUCCESS){
+                withContext(Dispatchers.Main){
+                    responseLive.value = response
+                    emitSource(responseLive)
+                }
+            }else if (response.status == Result.Status.ERROR){
+                withContext(Dispatchers.Main){
+                    emit(Result.error(response.message?:""))
+                    emitSource(responseLive)
+                }
+            }
+        }
+    }
+
     companion object{
         @Volatile private var INSTANCE: Repository? = null
         fun getInstance(remoteRepository: RemoteRepository, localRepository: LocalRepository) = INSTANCE ?: synchronized(Repository::class.java){

@@ -13,7 +13,7 @@ class NextMatchAdapter(private val actionListener: MatchActionListener): BaseAda
     override val layout: Int
         get() = R.layout.item_match_next
 
-    override fun bind(data: Event, itemView: View) {
+    override fun bind(data: Event, itemView: View, position: Int) {
         itemView.tv_title_match.text = data.strEvent
         itemView.tv_date_match.text = convertStringToDate(data.dateEvent?:"", data.strTime?:"")
         itemView.tv_time_match.text = convertStringToTime(data.dateEvent?:"", data.strTime?:"")

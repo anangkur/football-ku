@@ -21,7 +21,7 @@ abstract class BaseAdapter<DATA>: RecyclerView.Adapter<BaseAdapter<DATA>.BaseVie
     }
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
-        holder.bind(listItem[position])
+        holder.bind(listItem[position], position)
     }
 
     fun setRecyclerData(data: List<DATA>){
@@ -30,11 +30,11 @@ abstract class BaseAdapter<DATA>: RecyclerView.Adapter<BaseAdapter<DATA>.BaseVie
         notifyDataSetChanged()
     }
 
-    abstract fun bind(data: DATA, itemView: View)
+    abstract fun bind(data: DATA, itemView: View, position: Int)
 
     inner class BaseViewHolder(view: View): RecyclerView.ViewHolder(view){
-        fun bind(data: DATA){
-            bind(data, itemView)
+        fun bind(data: DATA, position: Int){
+            bind(data, itemView, position)
         }
     }
 }
