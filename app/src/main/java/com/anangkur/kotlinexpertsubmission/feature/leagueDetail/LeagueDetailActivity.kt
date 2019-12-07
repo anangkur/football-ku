@@ -19,6 +19,7 @@ import com.anangkur.kotlinexpertsubmission.feature.leagueDetail.detail.DetailLea
 import com.anangkur.kotlinexpertsubmission.feature.leagueDetail.nextMatch.NextMatchFragment
 import com.anangkur.kotlinexpertsubmission.feature.leagueDetail.prevMatch.PrevMatchFragment
 import com.anangkur.kotlinexpertsubmission.feature.leagueDetail.standings.StandingFragment
+import com.anangkur.kotlinexpertsubmission.feature.leagueDetail.team.TeamFragment
 import com.anangkur.kotlinexpertsubmission.util.*
 import kotlinx.android.synthetic.main.activity_league_detail.*
 
@@ -116,6 +117,7 @@ class LeagueDetailActivity: BaseActivity<LeagueDetailViewModel>(){
         tabAdapter.addFragment(NextMatchFragment.newInstance(mViewModel.dataFromIntent), getString(R.string.tab_next_match))
         tabAdapter.addFragment(PrevMatchFragment.newInstance(mViewModel.dataFromIntent), getString(R.string.tab_prev_match))
         tabAdapter.addFragment(StandingFragment.newInstance(mViewModel.dataFromIntent), getString(R.string.tab_clasement))
+        tabAdapter.addFragment(TeamFragment.newInstance(mViewModel.dataFromIntent), getString(R.string.tab_team))
         vp_layout.adapter = tabAdapter
         tab_detail.setupWithViewPager(vp_layout)
     }

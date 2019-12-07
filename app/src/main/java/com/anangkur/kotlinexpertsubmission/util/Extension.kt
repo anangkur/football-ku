@@ -63,10 +63,10 @@ fun <T : ViewModel> AppCompatActivity.obtainViewModel(viewModelClass: Class<T>) 
 fun <T : ViewModel> Fragment.obtainViewModel(viewModelClass: Class<T>) =
     ViewModelProviders.of(this, ViewModelFactory.getInstance(this.requireContext())).get(viewModelClass)
 
-fun RecyclerView.setupRecyclerViewGrid(context: Context){
+fun RecyclerView.setupRecyclerViewGrid(context: Context, spanCount: Int){
     this.apply {
         itemAnimator = DefaultItemAnimator()
-        layoutManager = GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
+        layoutManager = GridLayoutManager(context, spanCount, GridLayoutManager.VERTICAL, false)
     }
 }
 

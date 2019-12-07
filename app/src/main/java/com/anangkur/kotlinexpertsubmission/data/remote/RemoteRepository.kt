@@ -34,6 +34,10 @@ class RemoteRepository: DataSource, BaseDataSource() {
         return getResult { ApiService.getApiService.getStanding(id) }
     }
 
+    override suspend fun getTeamList(id: String): Result<ResponseTeamDetail> {
+        return getResult { ApiService.getApiService.getTeamList(id) }
+    }
+
     companion object{
         private var INSTANCE: RemoteRepository? = null
         fun getInstance() = INSTANCE ?: RemoteRepository()

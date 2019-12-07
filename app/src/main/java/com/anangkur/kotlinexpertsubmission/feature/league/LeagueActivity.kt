@@ -66,7 +66,7 @@ class LeagueActivity: BaseActivity<LeagueViewModel>(), LeagueActionListener {
         mAdapter = LeagueAdapter(this)
         recycler_league.apply {
             adapter = mAdapter
-            setupRecyclerViewGrid(this@LeagueActivity)
+            setupRecyclerViewGrid(this@LeagueActivity, 2)
         }
     }
 

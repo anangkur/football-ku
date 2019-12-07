@@ -18,4 +18,5 @@ interface DataSource {
     suspend fun getSearchMatch(e: String): Result<ResponseSearchMatch>{throw Exception()}
     suspend fun getTeamDetail(id: String): Result<ResponseTeamDetail>{throw Exception()}
     suspend fun getStanding(id: String): Result<ResponseStanding>{throw Exception()}
+    suspend fun getTeamList(id: String): Result<ResponseTeamDetail>{throw Exception()}
 }
