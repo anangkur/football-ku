@@ -4,8 +4,7 @@
     style="@style/LinearVerticalDefault">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
+        style="@style/ToolbarDefault"
         app:navigationIcon="@drawable/ic_back"
         android:elevation="@dimen/dimens_4dp">
         <androidx.appcompat.widget.SearchView

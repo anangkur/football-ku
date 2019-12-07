@@ -120,8 +120,8 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?actionBarSize"
+                style="@style/ToolbarDefault"
+                android:background="@color/black_00"
                 app:navigationIcon="@drawable/ic_back_white"
                 app:layout_collapseMode="pin"/>
         </net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout>
