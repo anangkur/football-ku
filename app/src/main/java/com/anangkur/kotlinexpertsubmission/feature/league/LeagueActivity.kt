@@ -10,7 +10,7 @@ import com.anangkur.kotlinexpertsubmission.base.BaseActivity
 import com.anangkur.kotlinexpertsubmission.data.model.League
 import com.anangkur.kotlinexpertsubmission.feature.favourite.FavouriteActivity
 import com.anangkur.kotlinexpertsubmission.feature.leagueDetail.LeagueDetailActivity
-import com.anangkur.kotlinexpertsubmission.feature.matchSearch.MatchSearchActivity
+import com.anangkur.kotlinexpertsubmission.feature.matchSearch.SearchActivity
 import com.anangkur.kotlinexpertsubmission.util.obtainViewModel
 import com.anangkur.kotlinexpertsubmission.util.setupRecyclerViewGrid
 import kotlinx.android.synthetic.main.activity_league.*
@@ -45,7 +45,7 @@ class LeagueActivity: BaseActivity<LeagueViewModel>(), LeagueActionListener {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId){
             R.id.menu_search -> {
-                MatchSearchActivity.startActivity(this)
+                SearchActivity.startActivity(this)
                 true
             }
             R.id.menu_favourite -> {

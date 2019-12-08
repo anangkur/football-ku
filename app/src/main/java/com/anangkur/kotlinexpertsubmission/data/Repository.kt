@@ -323,6 +323,28 @@ class Repository(private val remoteRepository: RemoteRepository, private val loc
         }
     }
 
+    fun getSearchTeam(t: String): LiveData<Result<ResponseTeamDetail>>{
+        EspressoIdlingResource.increment()
+        return liveData(Dispatchers.IO){
+            emit(Result.loading())
+            val response = remoteRepository.getSearchTeam(t)
+            val responseLive = MutableLiveData<Result<ResponseTeamDetail>>()
+            if (response.status == Result.Status.SUCCESS){
+                withContext(Dispatchers.Main){
+                    responseLive.value = response
+                    emitSource(responseLive)
+                    EspressoIdlingResource.decrement()
+                }
+            }else if (response.status == Result.Status.ERROR){
+                withContext(Dispatchers.Main){
+                    emit(Result.error(response.message?:""))
+                    emitSource(responseLive)
+                    EspressoIdlingResource.decrement()
+                }
+            }
+        }
+    }
+
     companion object{
         @Volatile private var INSTANCE: Repository? = null
         fun getInstance(remoteRepository: RemoteRepository, localRepository: LocalRepository) = INSTANCE ?: synchronized(Repository::class.java){

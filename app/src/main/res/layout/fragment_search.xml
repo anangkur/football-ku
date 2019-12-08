@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/LinearVerticalDefault">
+    <com.anangkur.kotlinexpertsubmission.base.BaseErrorView
+        android:id="@+id/error_search"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="gone"/>
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_search"
+        style="@style/SwipeRefreshDefault">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_search"
+            style="@style/RecyclerDefault"/>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</LinearLayout>

@@ -48,7 +48,7 @@ class TeamDetailViewModel(private val repository: Repository): ViewModel(){
 
     private val triggerDeleteTeamLive = MutableLiveData<TeamFavourite>()
     private val deleteTeamLiveData:LiveData<Result<Long>> = Transformations.switchMap(triggerDeleteTeamLive){
-        repository.deleteEventFav(it.idTeam?:"")
+        repository.deleteTeamFav(it.idTeam?:"")
     }
     fun deleteTeamData(data: TeamFavourite){
         triggerDeleteTeamLive.value = data

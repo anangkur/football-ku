@@ -37,6 +37,9 @@ interface ApiService {
     @GET("lookup_all_teams.php")
     suspend fun getTeamList(@Query("id") id: String): Response<ResponseTeamDetail>
 
+    @GET("searchteams.php")
+    suspend fun getSearchTeam(@Query("t") t: String): Response<ResponseTeamDetail>
+
     companion object Factory{
         val getApiService: ApiService by lazy {
 

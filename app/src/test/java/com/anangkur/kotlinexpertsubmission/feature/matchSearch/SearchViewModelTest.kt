@@ -18,18 +18,18 @@ import org.mockito.ArgumentCaptor
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 
-class MatchSearchViewModelTest {
+class SearchViewModelTest {
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
-    private lateinit var viewModel: MatchSearchViewModel
+    private lateinit var viewModel: SearchViewModel
     @Mock
     private lateinit var repository: Repository
 
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        viewModel = MatchSearchViewModel(repository)
+        viewModel = SearchViewModel(repository)
     }
 
     @Test

@@ -14,7 +14,7 @@ import com.anangkur.kotlinexpertsubmission.feature.leagueDetail.prevMatch.PrevMa
 import com.anangkur.kotlinexpertsubmission.feature.leagueDetail.team.TeamViewModel
 import com.anangkur.kotlinexpertsubmission.feature.leagueDetail.standings.StandingViewModel
 import com.anangkur.kotlinexpertsubmission.feature.matchDetail.MatchDetailViewModel
-import com.anangkur.kotlinexpertsubmission.feature.matchSearch.MatchSearchViewModel
+import com.anangkur.kotlinexpertsubmission.feature.matchSearch.SearchViewModel
 import com.anangkur.kotlinexpertsubmission.feature.teamDetail.TeamDetailViewModel
 
 class ViewModelFactory(private val repository: Repository): ViewModelProvider.NewInstanceFactory() {
@@ -28,7 +28,7 @@ class ViewModelFactory(private val repository: Repository): ViewModelProvider.Ne
                 isAssignableFrom(NextMatchViewModel::class.java) -> NextMatchViewModel(repository)
                 isAssignableFrom(PrevMatchViewModel::class.java) -> PrevMatchViewModel(repository)
                 isAssignableFrom(MatchDetailViewModel::class.java) -> MatchDetailViewModel(repository)
-                isAssignableFrom(MatchSearchViewModel::class.java) -> MatchSearchViewModel(repository)
+                isAssignableFrom(SearchViewModel::class.java) -> SearchViewModel(repository)
                 isAssignableFrom(FavouriteViewModel::class.java) -> FavouriteViewModel(repository)
                 isAssignableFrom(StandingViewModel::class.java) -> StandingViewModel(repository)
                 isAssignableFrom(TeamViewModel::class.java) -> TeamViewModel(repository)
