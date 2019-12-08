@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.anangkur.kotlinexpertsubmission.data.Repository
+import com.anangkur.kotlinexpertsubmission.data.local.ankoSqlite.TeamFavourite
 import com.anangkur.kotlinexpertsubmission.data.model.ResponseTeamDetail
 import com.anangkur.kotlinexpertsubmission.data.model.Result
 import com.anangkur.kotlinexpertsubmission.data.model.Team
@@ -33,4 +34,24 @@ class TeamDetailViewModel(private val repository: Repository): ViewModel(){
     fun refreshData(){
         reloadTrigger.value = true
     }
+
+    fun selectTeamById() = repository.selectTeamFavById(dataFromIntent?.idTeam?:"")
+
+    private val triggerInsertTeamLive = MutableLiveData<TeamFavourite>()
+    private val insertTeamLiveData:LiveData<Result<Long>> = Transformations.switchMap(triggerInsertTeamLive){
+        repository.insertTeamFav(it)
+    }
+    fun insertTeamData(data: TeamFavourite){
+        triggerInsertTeamLive.value = data
+    }
+    fun insertEvent() = insertTeamLiveData
+
+    private val triggerDeleteTeamLive = MutableLiveData<TeamFavourite>()
+    private val deleteTeamLiveData:LiveData<Result<Long>> = Transformations.switchMap(triggerDeleteTeamLive){
+        repository.deleteEventFav(it.idTeam?:"")
+    }
+    fun deleteTeamData(data: TeamFavourite){
+        triggerDeleteTeamLive.value = data
+    }
+    fun deleteEvent() = deleteTeamLiveData
 }

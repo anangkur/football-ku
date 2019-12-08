@@ -7,12 +7,12 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.Observer
 import com.anangkur.kotlinexpertsubmission.R
 import com.anangkur.kotlinexpertsubmission.base.BaseActivity
 import com.anangkur.kotlinexpertsubmission.base.BaseErrorView
-import com.anangkur.kotlinexpertsubmission.data.model.Event
 import com.anangkur.kotlinexpertsubmission.data.model.Result
 import com.anangkur.kotlinexpertsubmission.data.model.Team
 import com.anangkur.kotlinexpertsubmission.feature.custom.LeagueSliderFragment
@@ -103,6 +103,51 @@ class TeamDetailActivity: BaseActivity<TeamDetailViewModel>(), DetailLeagueActio
                         }
                     }
                 })
+                mViewModel.selectTeamById().observe(this@TeamDetailActivity, Observer {
+                    when(it.status){
+                        Result.Status.LOADING -> {
+
+                        }
+                        Result.Status.SUCCESS -> {
+                            mViewModel.isFavourite = true
+                            menu?.let { menu -> menu.getItem(0).icon = ContextCompat.getDrawable(this@TeamDetailActivity, R.drawable.ic_favorite_white_24dp) }
+                        }
+                        Result.Status.ERROR -> {
+                            mViewModel.isFavourite = false
+                            menu?.let { menu -> menu.getItem(0).icon = ContextCompat.getDrawable(this@TeamDetailActivity, R.drawable.ic_favorite_border_white_24dp) }
+                        }
+                    }
+                })
+                mViewModel.insertEvent().observe(this@TeamDetailActivity, Observer {
+                    when(it.status){
+                        Result.Status.LOADING -> {
+
+                        }
+                        Result.Status.SUCCESS -> {
+                            showSnackbarLong(getString(R.string.message_add_fav_success))
+                            menu?.let { menu -> menu.getItem(0).icon = ContextCompat.getDrawable(this@TeamDetailActivity, R.drawable.ic_favorite_white_24dp) }
+                        }
+                        Result.Status.ERROR -> {
+                            showSnackbarLong(getString(R.string.message_add_fav_fail))
+                            menu?.let { menu -> menu.getItem(0).icon = ContextCompat.getDrawable(this@TeamDetailActivity, R.drawable.ic_favorite_border_white_24dp) }
+                        }
+                    }
+                })
+                mViewModel.deleteEvent().observe(this@TeamDetailActivity, Observer {
+                    when(it.status){
+                        Result.Status.LOADING -> {
+
+                        }
+                        Result.Status.SUCCESS -> {
+                            showSnackbarLong(getString(R.string.message_delete_fav_success))
+                            menu?.let { menu -> menu.getItem(0).icon = ContextCompat.getDrawable(this@TeamDetailActivity, R.drawable.ic_favorite_border_white_24dp) }
+                        }
+                        Result.Status.ERROR -> {
+                            showSnackbarLong(getString(R.string.message_delete_fav_fail))
+                            menu?.let { menu -> menu.getItem(0).icon = ContextCompat.getDrawable(this@TeamDetailActivity, R.drawable.ic_favorite_white_24dp) }
+                        }
+                    }
+                })
             }
             listSliderLive.observe(this@TeamDetailActivity, Observer {
                 for (data in it){
@@ -165,12 +210,12 @@ class TeamDetailActivity: BaseActivity<TeamDetailViewModel>(), DetailLeagueActio
         }
     }
 
-    override fun onClickFavourite(data: Event) {
+    override fun onClickFavourite(data: Team) {
         if (mViewModel.isFavourite){
-            // mViewModel.deleteEventData(data.toEventFavourite())
+             mViewModel.deleteTeamData(data.toTeamFavourite())
             mViewModel.isFavourite = false
         }else{
-            // mViewModel.insertEventData(data.toEventFavourite())
+             mViewModel.insertTeamData(data.toTeamFavourite())
             mViewModel.isFavourite = true
         }
     }

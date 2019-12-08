@@ -2,6 +2,7 @@ package com.anangkur.kotlinexpertsubmission.data.local.ankoSqlite
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
+import com.anangkur.kotlinexpertsubmission.data.model.Team
 import com.anangkur.kotlinexpertsubmission.util.Const
 import org.jetbrains.anko.db.*
 
@@ -39,6 +40,22 @@ class MyDatabaseOpenHelper(context: Context): ManagedSQLiteOpenHelper(context, C
             EventFavourite.COLUMN_AWAY_FORWARD to TEXT,
             EventFavourite.COLUMN_HOME_SUBTITUTE to TEXT,
             EventFavourite.COLUMN_AWAY_SUBTITUTE to TEXT)
+        db.createTable(
+            TeamFavourite.TABLE_TEAM, true,
+            TeamFavourite.COLUMN_ID_TEAM to TEXT + PRIMARY_KEY,
+            TeamFavourite.COLUMN_NAME_TEAM to TEXT,
+            TeamFavourite.COLUMN_BADGE_TEAM to TEXT,
+            TeamFavourite.COLUMN_WEBSITE_TEAM to TEXT,
+            TeamFavourite.COLUMN_FACEBOOK_TEAM to TEXT,
+            TeamFavourite.COLUMN_TWITER_TEAM to TEXT,
+            TeamFavourite.COLUMN_INSTAGRAM_TEAM to TEXT,
+            TeamFavourite.COLUMN_YOUTUBE_TEAM to TEXT,
+            TeamFavourite.COLUMN_DESC_TEAM to TEXT,
+            TeamFavourite.COLUMN_FANART_1_TEAM to TEXT,
+            TeamFavourite.COLUMN_FANART_2_TEAM to TEXT,
+            TeamFavourite.COLUMN_FANART_3_TEAM to TEXT,
+            TeamFavourite.COLUMN_FANART_4_TEAM to TEXT,
+            TeamFavourite.COLUMN_BANNER_TEAM to TEXT)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {

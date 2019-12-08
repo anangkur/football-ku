@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/LinearVerticalDefault">
     <include layout="@layout/layout_toolbar"/>
-    <com.anangkur.kotlinexpertsubmission.base.BaseErrorView
-        android:id="@+id/error_event_fav"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"/>
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipe_favourite"
-        style="@style/SwipeRefreshDefault">
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_favourite"
-            style="@style/RecyclerDefault"/>
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_favourite"
+        style="@style/TabLayoutDefault"
+        android:background="@color/colorPrimary"
+        app:tabSelectedTextColor="@color/colorAccent"
+        app:tabTextAppearance="@style/TextBoldBig"
+        app:tabGravity="fill"
+        app:tabMaxWidth="@dimen/dimens_0dp"
+        android:elevation="@dimen/dimens_4dp"/>
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vp_favourite"
+        style="@style/ViewPagerDefault"/>
 </LinearLayout>

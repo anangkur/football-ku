@@ -2,6 +2,7 @@ package com.anangkur.kotlinexpertsubmission.data
 
 import com.anangkur.kotlinexpertsubmission.data.local.ankoSqlite.EventFavourite
 import androidx.lifecycle.LiveData
+import com.anangkur.kotlinexpertsubmission.data.local.ankoSqlite.TeamFavourite
 import com.anangkur.kotlinexpertsubmission.data.model.*
 
 interface DataSource {
@@ -10,6 +11,10 @@ interface DataSource {
     suspend fun selectAllEventFav(): Result<List<EventFavourite>>{throw Exception()}
     suspend fun deleteEventFav(id: String): Result<Long>{throw Exception()}
     suspend fun selectEventById(id: String): Result<EventFavourite>{throw Exception()}
+    suspend fun insertTeamFav(data: TeamFavourite): Result<Long>{throw Exception()}
+    suspend fun selectAllTeamFav(): Result<List<TeamFavourite>>{throw Exception()}
+    suspend fun deleteTeamFav(id: String): Result<Long>{throw Exception()}
+    suspend fun selectTeamById(id: String): Result<TeamFavourite>{throw Exception()}
 
     suspend fun getDetailLeague(id: String): Result<ResponseLeagueDetail>{throw Exception()}
     suspend fun getPrevMatch(id: String): Result<ResponseMatch>{throw Exception()}

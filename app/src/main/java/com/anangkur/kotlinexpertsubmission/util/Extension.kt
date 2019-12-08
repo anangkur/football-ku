@@ -20,7 +20,9 @@ import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.anangkur.kotlinexpertsubmission.R
 import com.anangkur.kotlinexpertsubmission.data.ViewModelFactory
 import com.anangkur.kotlinexpertsubmission.data.local.ankoSqlite.MyDatabaseOpenHelper
+import com.anangkur.kotlinexpertsubmission.data.local.ankoSqlite.TeamFavourite
 import com.anangkur.kotlinexpertsubmission.data.model.Event
+import com.anangkur.kotlinexpertsubmission.data.model.Team
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.snackbar.Snackbar
@@ -196,4 +198,38 @@ fun EventFavourite.toEvent() = Event(
     strHomeTeam = this.strHomeTeam,
     strHomeYellowCards = this.strHomeYellowCards,
     strTime = this.strTime
+)
+
+fun Team.toTeamFavourite() = TeamFavourite(
+    idTeam = this.idTeam,
+    strDescriptionEN = this.strDescriptionEN,
+    strFacebook = this.strFacebook,
+    strInstagram = this.strInstagram,
+    strTeam = this.strTeam,
+    strTeamBanner = this.strTeamBanner,
+    strTeamFanart1 = this.strTeamFanart1,
+    strTeamFanart2 = this.strTeamFanart2,
+    strTeamFanart3 = this.strTeamFanart3,
+    strTeamFanart4 = this.strTeamFanart4,
+    strTwitter = this.strTwitter,
+    strWebsite = this.strWebsite,
+    strYoutube = this.strYoutube,
+    strTeamBadge = this.strTeamBadge
+)
+
+fun TeamFavourite.toTeam() = Team(
+    idTeam = this.idTeam,
+    strDescriptionEN = this.strDescriptionEN,
+    strFacebook = this.strFacebook,
+    strInstagram = this.strInstagram,
+    strTeam = this.strTeam,
+    strTeamBanner = this.strTeamBanner,
+    strTeamFanart1 = this.strTeamFanart1,
+    strTeamFanart2 = this.strTeamFanart2,
+    strTeamFanart3 = this.strTeamFanart3,
+    strTeamFanart4 = this.strTeamFanart4,
+    strTwitter = this.strTwitter,
+    strWebsite = this.strWebsite,
+    strYoutube = this.strYoutube,
+    strTeamBadge = this.strTeamBadge
 )

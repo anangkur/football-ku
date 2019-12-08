@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import com.anangkur.kotlinexpertsubmission.data.local.LocalRepository
+import com.anangkur.kotlinexpertsubmission.data.local.ankoSqlite.TeamFavourite
 import com.anangkur.kotlinexpertsubmission.data.model.*
 import com.anangkur.kotlinexpertsubmission.data.remote.RemoteRepository
 import com.anangkur.kotlinexpertsubmission.util.EspressoIdlingResource
@@ -232,6 +233,82 @@ class Repository(private val remoteRepository: RemoteRepository, private val loc
             emit(Result.loading())
             val response = remoteRepository.getTeamList(id)
             val responseLive = MutableLiveData<Result<ResponseTeamDetail>>()
+            if (response.status == Result.Status.SUCCESS){
+                withContext(Dispatchers.Main){
+                    responseLive.value = response
+                    emitSource(responseLive)
+                }
+            }else if (response.status == Result.Status.ERROR){
+                withContext(Dispatchers.Main){
+                    emit(Result.error(response.message?:""))
+                    emitSource(responseLive)
+                }
+            }
+        }
+    }
+
+    fun insertTeamFav(data: TeamFavourite): LiveData<Result<Long>>{
+        return liveData(Dispatchers.IO){
+            emit(Result.loading())
+            val response = localRepository.insertTeamFav(data)
+            val responseLive = MutableLiveData<Result<Long>>()
+            if (response.status == Result.Status.SUCCESS){
+                withContext(Dispatchers.Main){
+                    responseLive.value = response
+                    emitSource(responseLive)
+                }
+            }else if (response.status == Result.Status.ERROR){
+                withContext(Dispatchers.Main){
+                    emit(Result.error(response.message?:""))
+                    emitSource(responseLive)
+                }
+            }
+        }
+    }
+
+    fun selectAllTeamFav(): LiveData<Result<List<TeamFavourite>>>{
+        return liveData(Dispatchers.IO){
+            emit(Result.loading())
+            val response = localRepository.selectAllTeamFav()
+            val responseLive = MutableLiveData<Result<List<TeamFavourite>>>()
+            if (response.status == Result.Status.SUCCESS){
+                withContext(Dispatchers.Main){
+                    responseLive.value = response
+                    emitSource(responseLive)
+                }
+            }else if (response.status == Result.Status.ERROR){
+                withContext(Dispatchers.Main){
+                    emit(Result.error(response.message?:""))
+                    emitSource(responseLive)
+                }
+            }
+        }
+    }
+
+    fun selectTeamFavById(id: String): LiveData<Result<TeamFavourite>>{
+        return liveData(Dispatchers.IO){
+            emit(Result.loading())
+            val response = localRepository.selectTeamById(id)
+            val responseLive = MutableLiveData<Result<TeamFavourite>>()
+            if (response.status == Result.Status.SUCCESS){
+                withContext(Dispatchers.Main){
+                    responseLive.value = response
+                    emitSource(responseLive)
+                }
+            }else if (response.status == Result.Status.ERROR){
+                withContext(Dispatchers.Main){
+                    emit(Result.error(response.message?:""))
+                    emitSource(responseLive)
+                }
+            }
+        }
+    }
+
+    fun deleteTeamFav(id: String): LiveData<Result<Long>>{
+        return liveData(Dispatchers.IO){
+            emit(Result.loading())
+            val response = localRepository.deleteTeamFav(id)
+            val responseLive = MutableLiveData<Result<Long>>()
             if (response.status == Result.Status.SUCCESS){
                 withContext(Dispatchers.Main){
                     responseLive.value = response

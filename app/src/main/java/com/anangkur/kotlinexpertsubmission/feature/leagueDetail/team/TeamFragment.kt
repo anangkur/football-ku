@@ -6,13 +6,11 @@ import androidx.lifecycle.Observer
 import com.anangkur.kotlinexpertsubmission.R
 import com.anangkur.kotlinexpertsubmission.base.BaseErrorView
 import com.anangkur.kotlinexpertsubmission.base.BaseFragment
-import com.anangkur.kotlinexpertsubmission.data.model.Event
 import com.anangkur.kotlinexpertsubmission.data.model.League
 import kotlinx.android.synthetic.main.fragment_match.*
 import com.anangkur.kotlinexpertsubmission.data.model.Result
 import com.anangkur.kotlinexpertsubmission.data.model.Team
 import com.anangkur.kotlinexpertsubmission.feature.leagueDetail.MatchActionListener
-import com.anangkur.kotlinexpertsubmission.feature.matchDetail.MatchDetailActivity
 import com.anangkur.kotlinexpertsubmission.feature.teamDetail.TeamDetailActivity
 import com.anangkur.kotlinexpertsubmission.util.*
 import com.anangkur.kotlinexpertsubmission.util.Const.ARGS_LEAGUE

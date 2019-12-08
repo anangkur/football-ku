@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.anangkur.kotlinexpertsubmission.feature.favourite.FavouriteViewModel
+import com.anangkur.kotlinexpertsubmission.feature.favourite.match.FavouriteMatchViewModel
+import com.anangkur.kotlinexpertsubmission.feature.favourite.team.FavouriteTeamViewModel
 import com.anangkur.kotlinexpertsubmission.feature.league.LeagueViewModel
 import com.anangkur.kotlinexpertsubmission.feature.leagueDetail.LeagueDetailViewModel
 import com.anangkur.kotlinexpertsubmission.feature.leagueDetail.detail.DetailLeagueViewModel
@@ -31,6 +33,8 @@ class ViewModelFactory(private val repository: Repository): ViewModelProvider.Ne
                 isAssignableFrom(StandingViewModel::class.java) -> StandingViewModel(repository)
                 isAssignableFrom(TeamViewModel::class.java) -> TeamViewModel(repository)
                 isAssignableFrom(TeamDetailViewModel::class.java) -> TeamDetailViewModel(repository)
+                isAssignableFrom(FavouriteMatchViewModel::class.java) -> FavouriteMatchViewModel(repository)
+                isAssignableFrom(FavouriteTeamViewModel::class.java) -> FavouriteTeamViewModel(repository)
                 else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
             }
         } as T

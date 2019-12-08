@@ -8,14 +8,88 @@ import androidx.lifecycle.MutableLiveData
 import com.anangkur.kotlinexpertsubmission.R
 import com.anangkur.kotlinexpertsubmission.data.DataSource
 import com.anangkur.kotlinexpertsubmission.data.local.ankoSqlite.MyDatabaseOpenHelper
+import com.anangkur.kotlinexpertsubmission.data.local.ankoSqlite.TeamFavourite
 import com.anangkur.kotlinexpertsubmission.data.model.League
 import com.anangkur.kotlinexpertsubmission.data.model.Result
-import org.jetbrains.anko.db.classParser
-import org.jetbrains.anko.db.delete
-import org.jetbrains.anko.db.insert
-import org.jetbrains.anko.db.select
+import org.jetbrains.anko.db.*
 
 class LocalRepository(private val context: Context, private val database: MyDatabaseOpenHelper): DataSource {
+
+    override suspend fun insertTeamFav(data: TeamFavourite): Result<Long> {
+        Result.loading(null)
+        return try {
+            database.use {
+                insert(
+                    TeamFavourite.TABLE_TEAM,
+                    TeamFavourite.COLUMN_ID_TEAM to data.idTeam,
+                    TeamFavourite.COLUMN_NAME_TEAM to data.strTeam,
+                    TeamFavourite.COLUMN_WEBSITE_TEAM to data.strWebsite,
+                    TeamFavourite.COLUMN_FACEBOOK_TEAM to data.strFacebook,
+                    TeamFavourite.COLUMN_TWITER_TEAM to data.strTwitter,
+                    TeamFavourite.COLUMN_INSTAGRAM_TEAM to data.strInstagram,
+                    TeamFavourite.COLUMN_YOUTUBE_TEAM to data.strYoutube,
+                    TeamFavourite.COLUMN_DESC_TEAM to data.strDescriptionEN,
+                    TeamFavourite.COLUMN_FANART_1_TEAM to data.strTeamFanart1,
+                    TeamFavourite.COLUMN_FANART_2_TEAM to data.strTeamFanart2,
+                    TeamFavourite.COLUMN_FANART_3_TEAM to data.strTeamFanart3,
+                    TeamFavourite.COLUMN_FANART_4_TEAM to data.strTeamFanart4,
+                    TeamFavourite.COLUMN_BANNER_TEAM to data.strTeamBanner,
+                    TeamFavourite.COLUMN_BADGE_TEAM to data.strTeamBadge
+                )
+            }
+            Result.success(0)
+        }catch (e: Exception){
+            e.printStackTrace()
+            Result.error(e.message?:"Terjadi kesalahan")
+        }
+    }
+
+    override suspend fun selectAllTeamFav(): Result<List<TeamFavourite>> {
+        Result.loading(null)
+        return try{
+            val returnData = ArrayList<TeamFavourite>()
+            database.use {
+                val result = select(TeamFavourite.TABLE_TEAM)
+                returnData.addAll(result.parseList(classParser()))
+            }
+            Result.success(returnData)
+        }catch (e: Exception){
+            e.printStackTrace()
+            Result.error(e.message?:"Terjadi kesalahan")
+        }
+    }
+
+    override suspend fun deleteTeamFav(id: String): Result<Long> {
+        Result.loading(null)
+        return try {
+            database.use {
+                delete(TeamFavourite.TABLE_TEAM, "(${TeamFavourite.COLUMN_ID_TEAM} = {id})", "id" to id)
+                Result.success(0)
+            }
+        }catch (e: Exception){
+            e.printStackTrace()
+            Result.error(e.message?:"Terjadi kesalahan")
+        }
+    }
+
+    override suspend fun selectTeamById(id: String): Result<TeamFavourite> {
+        Result.loading(null)
+        return try {
+            database.use {
+                val result = select(TeamFavourite.TABLE_TEAM)
+                    .whereArgs("(${TeamFavourite.COLUMN_ID_TEAM} = {id})", "id" to id)
+                val returnResult = result.parseList(classParser<TeamFavourite>())
+                if (!returnResult.isNullOrEmpty()){
+                    Result.success(returnResult[0])
+                }else{
+                    Result.error("belum favorit")
+                }
+            }
+        }catch (e:Exception){
+            e.printStackTrace()
+            return Result.error(e.message?:"Terjadi kesalahan")
+        }
+    }
 
     override suspend fun selectEventById(id: String): Result<EventFavourite> {
         Result.loading(null)

@@ -76,5 +76,6 @@
     <string name="label_loss">K</string>
     <string name="label_point">P</string>
     <string name="tab_team">Daftar Tim</string>
+    <string name="tab_match">Pertandingan</string>
 
 </resources>
