@@ -11,4 +11,5 @@ object Const {
     const val DATABASE_NAME = "KotlinExpert.db"
 
     const val ARGS_LEAGUE = "ARGS_LEAGUE"
+    const val ARGS_TEAM = "ARGS_TEAM"
 }

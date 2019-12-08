@@ -107,6 +107,9 @@ fun View.visible(){
 fun View.gone(){
     this.visibility = View.GONE
 }
+fun View.invisible(){
+    this.visibility = View.INVISIBLE
+}
 
 fun convertStringToDate(date: String, time: String): String{
     val dateFromApi = try {

@@ -10,8 +10,10 @@ import com.anangkur.kotlinexpertsubmission.data.model.Event
 import com.anangkur.kotlinexpertsubmission.data.model.League
 import kotlinx.android.synthetic.main.fragment_match.*
 import com.anangkur.kotlinexpertsubmission.data.model.Result
+import com.anangkur.kotlinexpertsubmission.data.model.Team
 import com.anangkur.kotlinexpertsubmission.feature.leagueDetail.MatchActionListener
 import com.anangkur.kotlinexpertsubmission.feature.matchDetail.MatchDetailActivity
+import com.anangkur.kotlinexpertsubmission.feature.teamDetail.TeamDetailActivity
 import com.anangkur.kotlinexpertsubmission.util.*
 import com.anangkur.kotlinexpertsubmission.util.Const.ARGS_LEAGUE
 
@@ -67,8 +69,8 @@ class TeamFragment: BaseFragment<TeamViewModel>(), MatchActionListener{
         recycler_match.setupRecyclerViewGrid(requireContext(), 3)
     }
 
-    override fun onClickMatch(data: Event) {
-        MatchDetailActivity.startActivity(requireContext(), data)
+    override fun onClickTeam(data: Team) {
+        TeamDetailActivity.startActivity(requireContext(), data)
     }
 
     companion object{

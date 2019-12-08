@@ -13,6 +13,7 @@ import com.anangkur.kotlinexpertsubmission.feature.leagueDetail.team.TeamViewMod
 import com.anangkur.kotlinexpertsubmission.feature.leagueDetail.standings.StandingViewModel
 import com.anangkur.kotlinexpertsubmission.feature.matchDetail.MatchDetailViewModel
 import com.anangkur.kotlinexpertsubmission.feature.matchSearch.MatchSearchViewModel
+import com.anangkur.kotlinexpertsubmission.feature.teamDetail.TeamDetailViewModel
 
 class ViewModelFactory(private val repository: Repository): ViewModelProvider.NewInstanceFactory() {
 
@@ -29,6 +30,7 @@ class ViewModelFactory(private val repository: Repository): ViewModelProvider.Ne
                 isAssignableFrom(FavouriteViewModel::class.java) -> FavouriteViewModel(repository)
                 isAssignableFrom(StandingViewModel::class.java) -> StandingViewModel(repository)
                 isAssignableFrom(TeamViewModel::class.java) -> TeamViewModel(repository)
+                isAssignableFrom(TeamDetailViewModel::class.java) -> TeamDetailViewModel(repository)
                 else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
             }
         } as T
