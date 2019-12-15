@@ -39,7 +39,7 @@
                 app:navigationIcon="@drawable/ic_back_white"
                 app:layout_collapseMode="pin"/>
         </net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout>
-        <com.anangkur.kotlinexpertsubmission.base.BaseErrorView
+        <com.anangkur.footbalku.base.BaseErrorView
             android:id="@+id/error_slider"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimens_280dp"

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.anangkur.kotlinexpertsubmission">
+    package="com.anangkur.footbalku">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -11,12 +11,12 @@
         android:roundIcon="@drawable/ic_football_ball"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".feature.teamDetail.TeamDetailActivity"></activity>
-        <activity android:name=".feature.favourite.FavouriteActivity" />
-        <activity android:name=".feature.matchSearch.SearchActivity" />
-        <activity android:name=".feature.matchDetail.MatchDetailActivity" />
-        <activity android:name=".feature.leagueDetail.LeagueDetailActivity" />
-        <activity android:name=".feature.league.LeagueActivity">
+        <activity android:name="com.anangkur.footbalku.feature.teamDetail.TeamDetailActivity"></activity>
+        <activity android:name="com.anangkur.footbalku.feature.favourite.FavouriteActivity" />
+        <activity android:name="com.anangkur.footbalku.feature.matchSearch.SearchActivity" />
+        <activity android:name="com.anangkur.footbalku.feature.matchDetail.MatchDetailActivity" />
+        <activity android:name="com.anangkur.footbalku.feature.leagueDetail.LeagueDetailActivity" />
+        <activity android:name="com.anangkur.footbalku.feature.league.LeagueActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -125,7 +125,7 @@
                 app:navigationIcon="@drawable/ic_back_white"
                 app:layout_collapseMode="pin"/>
         </net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout>
-        <com.anangkur.kotlinexpertsubmission.base.BaseErrorView
+        <com.anangkur.footbalku.base.BaseErrorView
             android:id="@+id/error_match_detail_1"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimens_280dp"
@@ -137,7 +137,7 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
         <androidx.constraintlayout.widget.ConstraintLayout
             style="@style/ConstraintWrapHeight">
-            <com.anangkur.kotlinexpertsubmission.base.BaseErrorView
+            <com.anangkur.footbalku.base.BaseErrorView
                 android:id="@+id/error_match_detail_2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
