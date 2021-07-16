@@ -6,9 +6,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_football_ball"
+        android:icon="@drawable/ic_football"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/ic_football_ball"
+        android:roundIcon="@drawable/ic_football"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name="com.anangkur.footbalku.feature.teamDetail.TeamDetailActivity"></activity>
