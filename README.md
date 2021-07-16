@@ -57,7 +57,7 @@
     <td><img src="app/src/main/res/drawable/list_of_league.png" alt="Splash"></td>
     <td><img src="app/src/main/res/drawable/detail_league.png" alt="Movie"></td>
     <td><img src="app/src/main/res/drawable/list_of_match.png" alt="TV"></td>
-    <td><img src="app/src/main/res/drawable/list_of_team.png" alt="TV"></td>
+    <td><img src="app/src/main/res/drawable/list_of_teams.png" alt="TV"></td>
   </tr>
   <tr>
     <td align="center">List of League</td>
